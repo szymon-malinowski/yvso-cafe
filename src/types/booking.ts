@@ -1,9 +1,17 @@
+import type {
+  ReservationCategory,
+  ReservationStatus,
+} from "../schemas/reservationSchema";
+
+export type BookingCategory = ReservationCategory;
+export type BookingStatus = ReservationStatus;
+
 export interface Booking {
   id: string;
   title: string;
   description: string;
-  category: string;
-  status: "planned" | "active" | "completed";
+  category: BookingCategory;
+  status: BookingStatus;
   createdAt: string;
   updatedAt: string;
 

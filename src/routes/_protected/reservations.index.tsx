@@ -40,7 +40,7 @@ function RouteComponent() {
             className="card bg-base-100 shadow p-4 hover:shadow-md transition"
           >
             <p className="font-medium">{booking.title}</p>
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-base-content/60">
               {booking.guestName} · Tisch {booking.tableNumber} ·{" "}
               {booking.guestsCount} Gäste
             </p>

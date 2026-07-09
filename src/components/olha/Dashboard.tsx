@@ -1,7 +1,6 @@
 // src/components/olha/Dashboard.tsx
 import { useMemo, useState } from 'react';
 import { useBookings } from '../../hooks/useBookings';
-import { useTheme } from './AppContext';
 import EmptyState from './EmptyState';
 import ItemFilters from './ItemFilters';
 import {
@@ -28,7 +27,6 @@ const currencyFormatter = new Intl.NumberFormat('de-DE', {
 });
 
 export default function Dashboard() {
-  const { theme, toggleTheme } = useTheme();
   const { useGetAll } = useBookings();
   const { data: bookings = [], isLoading, isError } = useGetAll();
   const [filters, setFilters] = useState<BookingFilters>(defaultFilters);
@@ -42,48 +40,41 @@ export default function Dashboard() {
   const revenue = getExpectedRevenue(bookings);
 
   if (isLoading) {
-    return <div className="p-6 text-center font-medium">Dashboard-Daten werden geladen...</div>;
+    return <div className="p-6 text-center font-medium text-base-content">Dashboard-Daten werden geladen...</div>;
   }
 
   if (isError) {
-    return <div className="p-6 text-center font-medium text-red-500">Fehler beim Laden der Daten.</div>;
+    return <div className="p-6 text-center font-medium text-error">Fehler beim Laden der Daten.</div>;
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-900 transition-colors dark:bg-gray-950 dark:text-gray-100">
+    <div className="min-h-screen bg-base-200 text-base-content transition-colors">
       <div className="mx-auto max-w-6xl space-y-6 p-6">
-        <header className="flex flex-col justify-between gap-4 rounded-xl border border-gray-100 bg-white p-5 shadow-sm dark:border-gray-800 dark:bg-gray-900 md:flex-row md:items-center">
+        <header className="rounded-xl border border-base-300 bg-base-100 p-5 shadow-sm">
           <div>
-            <p className="text-sm font-medium text-red-600 dark:text-red-300">Y.V.S.O Café</p>
-            <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-100">YVSO Café Dashboard</h1>
+            <p className="text-sm font-medium text-primary">Y.V.S.O Café</p>
+            <h1 className="text-3xl font-bold text-base-content">YVSO Café Dashboard</h1>
           </div>
-          <button
-            className="rounded-lg bg-gray-900 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-gray-700 dark:bg-white dark:text-gray-900 dark:hover:bg-gray-200"
-            type="button"
-            onClick={toggleTheme}
-          >
-            {theme === 'dark' ? 'Helles Theme' : 'Dunkles Theme'}
-          </button>
         </header>
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
-          <div className="rounded-xl border border-blue-100 bg-blue-50 p-4 shadow-sm dark:border-blue-900 dark:bg-blue-950">
-            <h3 className="text-sm font-medium text-blue-600 dark:text-blue-300">Gesamte Reservierungen</h3>
+          <div className="rounded-xl border border-primary/20 bg-primary/10 p-4 shadow-sm">
+            <h3 className="text-sm font-medium text-primary">Gesamte Reservierungen</h3>
             <p className="mt-1 text-2xl font-bold">{total}</p>
           </div>
 
-          <div className="rounded-xl border border-green-100 bg-green-50 p-4 shadow-sm dark:border-green-900 dark:bg-green-950">
-            <h3 className="text-sm font-medium text-green-600 dark:text-green-300">Aktive Reservierungen</h3>
+          <div className="rounded-xl border border-success/20 bg-success/10 p-4 shadow-sm">
+            <h3 className="text-sm font-medium text-success">Aktive Reservierungen</h3>
             <p className="mt-1 text-2xl font-bold">{statusCounts.active}</p>
           </div>
 
-          <div className="rounded-xl border border-yellow-100 bg-yellow-50 p-4 shadow-sm dark:border-yellow-900 dark:bg-yellow-950">
-            <h3 className="text-sm font-medium text-yellow-600 dark:text-yellow-300">Ø Gäste pro Tisch</h3>
+          <div className="rounded-xl border border-warning/20 bg-warning/10 p-4 shadow-sm">
+            <h3 className="text-sm font-medium text-warning">Ø Gäste pro Tisch</h3>
             <p className="mt-1 text-2xl font-bold">{avgGuests}</p>
           </div>
 
-          <div className="rounded-xl border border-purple-100 bg-purple-50 p-4 shadow-sm dark:border-purple-900 dark:bg-purple-950">
-            <h3 className="text-sm font-medium text-purple-600 dark:text-purple-300">Erwarteter Umsatz</h3>
+          <div className="rounded-xl border border-secondary/20 bg-secondary/10 p-4 shadow-sm">
+            <h3 className="text-sm font-medium text-secondary">Erwarteter Umsatz</h3>
             <p className="mt-1 text-2xl font-bold">{currencyFormatter.format(revenue)}</p>
           </div>
         </div>
@@ -92,9 +83,9 @@ export default function Dashboard() {
           {Object.entries(statusCounts).map(([status, count]) => (
             <div
               key={status}
-              className="rounded-xl border border-gray-100 bg-white p-4 shadow-sm dark:border-gray-800 dark:bg-gray-900"
+              className="rounded-xl border border-base-300 bg-base-100 p-4 shadow-sm"
             >
-              <h3 className="text-sm font-medium text-gray-600 dark:text-gray-300">
+              <h3 className="text-sm font-medium text-base-content/65">
                 {statusLabels[status as keyof typeof statusLabels]}
               </h3>
               <p className="mt-1 text-2xl font-bold">{count}</p>
@@ -102,21 +93,21 @@ export default function Dashboard() {
           ))}
         </div>
 
-        <div className="rounded-xl border border-gray-100 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900">
-          <h2 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-100">Neueste Reservierungen</h2>
+        <div className="rounded-xl border border-base-300 bg-base-100 p-6 shadow-sm">
+          <h2 className="mb-4 text-xl font-semibold text-base-content">Neueste Reservierungen</h2>
           {recent.length === 0 ? (
-            <p className="text-gray-500 dark:text-gray-400">Keine Reservierungen vorhanden.</p>
+            <p className="text-base-content/60">Keine Reservierungen vorhanden.</p>
           ) : (
-            <ul className="divide-y divide-gray-100 dark:divide-gray-800">
+            <ul className="divide-y divide-base-300">
               {recent.map((booking) => (
                 <li key={booking.id} className="flex items-center justify-between py-3">
                   <div>
-                    <p className="font-medium text-gray-900 dark:text-gray-100">{booking.title}</p>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                    <p className="font-medium text-base-content">{booking.title}</p>
+                    <p className="text-sm text-base-content/60">
                       {booking.guestsCount} Gäste • Tisch {booking.tableNumber} • {booking.category}
                     </p>
                   </div>
-                  <span className="rounded-full bg-gray-100 px-2 py-1 text-xs font-semibold text-gray-700 dark:bg-gray-800 dark:text-gray-200">
+                  <span className="rounded-full bg-base-200 px-2 py-1 text-xs font-semibold text-base-content">
                     {statusLabels[booking.status]}
                   </span>
                 </li>
@@ -132,22 +123,22 @@ export default function Dashboard() {
           onReset={() => setFilters(defaultFilters)}
         />
 
-        <div className="rounded-xl border border-gray-100 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900">
-          <h2 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-100">Gefilterte Reservierungen</h2>
+        <div className="rounded-xl border border-base-300 bg-base-100 p-6 shadow-sm">
+          <h2 className="mb-4 text-xl font-semibold text-base-content">Gefilterte Reservierungen</h2>
           {filteredBookings.length === 0 ? (
             <EmptyState />
           ) : (
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               {filteredBookings.map((booking) => (
-                <article key={booking.id} className="rounded-xl border border-gray-100 p-4 dark:border-gray-800">
+                <article key={booking.id} className="rounded-xl border border-base-300 p-4">
                   <div className="flex items-center justify-between gap-3">
-                    <h3 className="font-semibold text-gray-900 dark:text-gray-100">{booking.title}</h3>
-                    <span className="rounded-full bg-gray-100 px-2 py-1 text-xs font-semibold text-gray-700 dark:bg-gray-800 dark:text-gray-200">
+                    <h3 className="font-semibold text-base-content">{booking.title}</h3>
+                    <span className="rounded-full bg-base-200 px-2 py-1 text-xs font-semibold text-base-content">
                       {statusLabels[booking.status]}
                     </span>
                   </div>
-                  <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">{booking.description}</p>
-                  <p className="mt-3 text-sm font-medium text-gray-700 dark:text-gray-300">
+                  <p className="mt-2 text-sm text-base-content/60">{booking.description}</p>
+                  <p className="mt-3 text-sm font-medium text-base-content/75">
                     {booking.guestName} • {booking.guestsCount} Gäste • Tisch {booking.tableNumber}
                   </p>
                 </article>
