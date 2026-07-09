@@ -13,7 +13,9 @@ function RouteComponent() {
 
   return (
     <div className="p-6">
-      <h1 className="text-xl font-semibold mb-4">Neue Reservierung</h1>
+      <h1 className="text-2xl font-bold mb-6 text-center text-base-content">
+        Neue Reservierung
+      </h1>
       <ReservationForm
         isSubmitting={isPending}
         submitLabel="Reservierung erstellen"
