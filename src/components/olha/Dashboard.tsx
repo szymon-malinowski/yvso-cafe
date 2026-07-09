@@ -51,14 +51,14 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900 transition-colors dark:bg-gray-950 dark:text-gray-100">
-      <div className="mx-auto max-w-6xl space-y-6 p-6">
+      <div className="mx-auto max-w-6xl space-y-6 p-4 sm:p-6">
         <header className="flex flex-col justify-between gap-4 rounded-xl border border-gray-100 bg-white p-5 shadow-sm dark:border-gray-800 dark:bg-gray-900 md:flex-row md:items-center">
-          <div>
+          <div className="min-w-0">
             <p className="text-sm font-medium text-red-600 dark:text-red-300">Y.V.S.O Café</p>
-            <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-100">YVSO Café Dashboard</h1>
+            <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-100 sm:text-3xl">YVSO Café Dashboard</h1>
           </div>
           <button
-            className="rounded-lg bg-gray-900 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-gray-700 dark:bg-white dark:text-gray-900 dark:hover:bg-gray-200"
+            className="w-full rounded-lg bg-gray-900 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-gray-700 dark:bg-white dark:text-gray-900 dark:hover:bg-gray-200 sm:w-fit"
             type="button"
             onClick={toggleTheme}
           >
@@ -109,14 +109,14 @@ export default function Dashboard() {
           ) : (
             <ul className="divide-y divide-gray-100 dark:divide-gray-800">
               {recent.map((booking) => (
-                <li key={booking.id} className="flex items-center justify-between py-3">
-                  <div>
-                    <p className="font-medium text-gray-900 dark:text-gray-100">{booking.title}</p>
+                <li key={booking.id} className="flex flex-col gap-2 py-3 sm:flex-row sm:items-center sm:justify-between">
+                  <div className="min-w-0">
+                    <p className="break-words font-medium text-gray-900 dark:text-gray-100">{booking.title}</p>
                     <p className="text-sm text-gray-500 dark:text-gray-400">
                       {booking.guestsCount} Gäste • Tisch {booking.tableNumber} • {booking.category}
                     </p>
                   </div>
-                  <span className="rounded-full bg-gray-100 px-2 py-1 text-xs font-semibold text-gray-700 dark:bg-gray-800 dark:text-gray-200">
+                  <span className="w-fit shrink-0 rounded-full bg-gray-100 px-2 py-1 text-xs font-semibold text-gray-700 dark:bg-gray-800 dark:text-gray-200">
                     {statusLabels[booking.status]}
                   </span>
                 </li>
@@ -140,13 +140,13 @@ export default function Dashboard() {
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               {filteredBookings.map((booking) => (
                 <article key={booking.id} className="rounded-xl border border-gray-100 p-4 dark:border-gray-800">
-                  <div className="flex items-center justify-between gap-3">
-                    <h3 className="font-semibold text-gray-900 dark:text-gray-100">{booking.title}</h3>
-                    <span className="rounded-full bg-gray-100 px-2 py-1 text-xs font-semibold text-gray-700 dark:bg-gray-800 dark:text-gray-200">
+                  <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                    <h3 className="min-w-0 break-words font-semibold text-gray-900 dark:text-gray-100">{booking.title}</h3>
+                    <span className="w-fit shrink-0 rounded-full bg-gray-100 px-2 py-1 text-xs font-semibold text-gray-700 dark:bg-gray-800 dark:text-gray-200">
                       {statusLabels[booking.status]}
                     </span>
                   </div>
-                  <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">{booking.description}</p>
+                  <p className="mt-2 break-words text-sm text-gray-500 dark:text-gray-400">{booking.description}</p>
                   <p className="mt-3 text-sm font-medium text-gray-700 dark:text-gray-300">
                     {booking.guestName} • {booking.guestsCount} Gäste • Tisch {booking.tableNumber}
                   </p>

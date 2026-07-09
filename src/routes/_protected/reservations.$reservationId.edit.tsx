@@ -34,7 +34,7 @@ function RouteComponent() {
   };
 
   return (
-    <main className="p-4">
+    <main className="mx-auto max-w-3xl p-4 sm:p-6">
       <h1 className="text-xl font-semibold mb-4">Reservierung bearbeiten</h1>
 
       <ReservationForm
