@@ -30,10 +30,10 @@ function RouteComponent() {
   const { data: booking, isLoading, isError } = useGetOne(reservationId);
   const deleteBooking = useDelete();
 
-  if (isLoading) return <p className="p-4">Lädt Reservierung...</p>;
+  if (isLoading) return <p className="p-4 text-center">Lädt Reservierung...</p>;
   if (isError || !booking)
     return (
-      <div className="p-4">
+      <div className="p-4 text-center">
         <p>Reservierung nicht gefunden.</p>
         <Link to="/reservations" className="btn btn-ghost mt-2">
           Zurück zur Übersicht
@@ -54,38 +54,41 @@ function RouteComponent() {
   };
 
   return (
-    <main className="p-4 max-w-xl">
-      <Link to="/reservations" className="btn btn-ghost btn-sm mb-4">
-        Zurück zur Übersicht
-      </Link>
-
-      <h1 className="text-xl font-semibold mb-2">{booking.title}</h1>
+    <main className="p-4 max-w-xl bg-base-100 rounded-2xl shadow-md mx-auto mt-6 flex flex-col gap-4 items-center text-center">
+      <h1 className="text-3xl font-semibold mb-2">{booking.title}</h1>
       <p className="text-sm text-base-content/60 mb-4">{booking.description}</p>
 
-      <div className="grid gap-2 mb-6">
+      <div className="grid gap-4 mb-6 text-left w-full max-w-sm">
         <p>
-          <strong>Kategorie:</strong>{" "}
+          <strong className="mr-2">Kategorie:</strong>{" "}
           {reservationCategoryLabels[booking.category as ReservationCategory]}
         </p>
         <p>
-          <strong>Status:</strong>{" "}
+          <strong className="mr-2">Status:</strong>{" "}
           {reservationStatusLabels[booking.status as ReservationStatus]}
         </p>
         <p>
-          <strong>Gast:</strong> {booking.guestName}
+          <strong className="mr-2">Gast:</strong> {booking.guestName}
         </p>
         <p>
-          <strong>Telefon:</strong> {booking.guestPhone}
+          <strong className="mr-2">Telefon:</strong> {booking.guestPhone}
         </p>
         <p>
-          <strong>Anzahl der Gäste:</strong> {booking.guestsCount}
+          <strong className="mr-2">Anzahl der Gäste:</strong>{" "}
+          {booking.guestsCount}
         </p>
         <p>
-          <strong>Tischnummer:</strong> {booking.tableNumber}
+          <strong className="mr-2">Tischnummer:</strong> {booking.tableNumber}
+        </p>
+        <p>
+          <strong className="mr-2">Datum:</strong> {booking.bookingDate}
+        </p>
+        <p>
+          <strong className="mr-2">Uhrzeit:</strong> {booking.bookingTime}
         </p>
       </div>
 
-      <div className="flex gap-2">
+      <div className="flex justify-between w-full px-20">
         <Link
           to="/reservations/$reservationId/edit"
           params={{ reservationId }}
@@ -101,6 +104,12 @@ function RouteComponent() {
           {deleteBooking.isPending ? "Wird gelöscht..." : "Löschen"}
         </button>
       </div>
+      <Link
+        to="/reservations"
+        className="btn btn-ghost btn-md mt-6 border border-base-content/20"
+      >
+        Zurück zur Übersicht
+      </Link>
     </main>
   );
 }
