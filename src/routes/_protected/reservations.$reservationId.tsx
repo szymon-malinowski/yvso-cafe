@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import {
   createFileRoute,
   Link,
@@ -54,13 +55,13 @@ function RouteComponent() {
   };
 
   return (
-    <main className="p-4 max-w-xl">
+    <main className="max-w-xl p-4 sm:p-6">
       <Link to="/reservations" className="btn btn-ghost btn-sm mb-4">
         Zurück zur Übersicht
       </Link>
 
-      <h1 className="text-xl font-semibold mb-2">{booking.title}</h1>
-      <p className="text-sm text-base-content/60 mb-4">{booking.description}</p>
+      <h1 className="mb-2 break-words text-xl font-semibold">{booking.title}</h1>
+      <p className="mb-4 break-words text-sm text-base-content/60">{booking.description}</p>
 
       <div className="grid gap-2 mb-6">
         <p>
@@ -85,16 +86,16 @@ function RouteComponent() {
         </p>
       </div>
 
-      <div className="flex gap-2">
+      <div className="flex flex-col gap-2 sm:flex-row">
         <Link
           to="/reservations/$reservationId/edit"
           params={{ reservationId }}
-          className="btn btn-primary"
+          className="btn btn-primary w-full sm:w-fit"
         >
           Bearbeiten
         </Link>
         <button
-          className="btn btn-error"
+          className="btn btn-error w-full sm:w-fit"
           disabled={deleteBooking.isPending}
           onClick={handleDelete}
         >

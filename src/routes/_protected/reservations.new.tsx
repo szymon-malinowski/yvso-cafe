@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { ReservationForm } from "../../components/reservations/ReservationForm";
 import { useBookings } from "../../hooks/useBookings";
@@ -12,8 +13,8 @@ function RouteComponent() {
   const { mutateAsync: createBooking, isPending } = useCreate();
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold mb-6 text-center text-base-content">
+    <div className="mx-auto max-w-3xl p-4 sm:p-6">
+      <h1 className="mb-6 text-center text-2xl font-bold text-base-content">
         Neue Reservierung
       </h1>
       <ReservationForm

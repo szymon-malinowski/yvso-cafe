@@ -19,7 +19,6 @@ export interface Booking {
   guestPhone: string;
   guestsCount: number;
   tableNumber: number;
-  
-  bookingDate: string;
-  bookingTime: string;
+  reservationDate: string;
+  reservationTime: string;
 }

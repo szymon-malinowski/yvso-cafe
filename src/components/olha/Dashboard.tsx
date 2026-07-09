@@ -49,11 +49,11 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-base-200 text-base-content transition-colors">
-      <div className="mx-auto max-w-6xl space-y-6 p-6">
+      <div className="mx-auto max-w-6xl space-y-6 p-4 sm:p-6">
         <header className="rounded-xl border border-base-300 bg-base-100 p-5 shadow-sm">
-          <div>
+          <div className="min-w-0">
             <p className="text-sm font-medium text-primary">Y.V.S.O Café</p>
-            <h1 className="text-3xl font-bold text-base-content">YVSO Café Dashboard</h1>
+            <h1 className="text-2xl font-bold text-base-content sm:text-3xl">YVSO Café Dashboard</h1>
           </div>
         </header>
 
@@ -100,14 +100,14 @@ export default function Dashboard() {
           ) : (
             <ul className="divide-y divide-base-300">
               {recent.map((booking) => (
-                <li key={booking.id} className="flex items-center justify-between py-3">
-                  <div>
-                    <p className="font-medium text-base-content">{booking.title}</p>
+                <li key={booking.id} className="flex flex-col gap-2 py-3 sm:flex-row sm:items-center sm:justify-between">
+                  <div className="min-w-0">
+                    <p className="break-words font-medium text-base-content">{booking.title}</p>
                     <p className="text-sm text-base-content/60">
                       {booking.guestsCount} Gäste • Tisch {booking.tableNumber} • {booking.category}
                     </p>
                   </div>
-                  <span className="rounded-full bg-base-200 px-2 py-1 text-xs font-semibold text-base-content">
+                  <span className="w-fit shrink-0 rounded-full bg-base-200 px-2 py-1 text-xs font-semibold text-base-content">
                     {statusLabels[booking.status]}
                   </span>
                 </li>
@@ -131,13 +131,13 @@ export default function Dashboard() {
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               {filteredBookings.map((booking) => (
                 <article key={booking.id} className="rounded-xl border border-base-300 p-4">
-                  <div className="flex items-center justify-between gap-3">
-                    <h3 className="font-semibold text-base-content">{booking.title}</h3>
-                    <span className="rounded-full bg-base-200 px-2 py-1 text-xs font-semibold text-base-content">
+                  <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                    <h3 className="min-w-0 break-words font-semibold text-base-content">{booking.title}</h3>
+                    <span className="w-fit shrink-0 rounded-full bg-base-200 px-2 py-1 text-xs font-semibold text-base-content">
                       {statusLabels[booking.status]}
                     </span>
                   </div>
-                  <p className="mt-2 text-sm text-base-content/60">{booking.description}</p>
+                  <p className="mt-2 break-words text-sm text-base-content/60">{booking.description}</p>
                   <p className="mt-3 text-sm font-medium text-base-content/75">
                     {booking.guestName} • {booking.guestsCount} Gäste • Tisch {booking.tableNumber}
                   </p>
