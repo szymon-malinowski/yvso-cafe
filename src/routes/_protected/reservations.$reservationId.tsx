@@ -60,7 +60,7 @@ function RouteComponent() {
       </Link>
 
       <h1 className="text-xl font-semibold mb-2">{booking.title}</h1>
-      <p className="text-sm text-gray-500 mb-4">{booking.description}</p>
+      <p className="text-sm text-base-content/60 mb-4">{booking.description}</p>
 
       <div className="grid gap-2 mb-6">
         <p>

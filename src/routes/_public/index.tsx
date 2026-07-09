@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import "../../index.css";
-import Navbar from "../../components/szymon/Navbar";
+import HeroComponent from "../../components/szymon/HeroComponent";
 
 export const Route = createFileRoute("/_public/")({
   component: Index,
@@ -9,7 +9,7 @@ export const Route = createFileRoute("/_public/")({
 function Index() {
   return (
     <main>
-      <Navbar />
+      <HeroComponent />
     </main>
   );
 }

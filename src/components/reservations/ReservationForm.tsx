@@ -137,7 +137,7 @@ export const ReservationForm = ({
         </form.Field>
       </div>
       <div className="grid gap-4 md:grid-cols-2">
-        <form.Field name="reservationDate">
+        <form.Field name="bookingDate">
           {(field) => (
             <FormField
               error={getErrorMessage(field.state.meta.errors)}
@@ -155,7 +155,7 @@ export const ReservationForm = ({
           )}
         </form.Field>
 
-        <form.Field name="reservationTime">
+        <form.Field name="bookingTime">
           {(field) => (
             <FormField
               error={getErrorMessage(field.state.meta.errors)}
