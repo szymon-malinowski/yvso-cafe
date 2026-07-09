@@ -41,7 +41,7 @@ function RouteComponent() {
             className="card min-w-0 bg-base-100 p-4 shadow transition hover:shadow-md"
           >
             <p className="break-words font-medium">{booking.title}</p>
-            <p className="break-words text-sm text-gray-500">
+            <p className="break-words text-sm text-base-content/60">
               {booking.guestName} · Tisch {booking.tableNumber} ·{" "}
               {booking.guestsCount} Gäste
             </p>

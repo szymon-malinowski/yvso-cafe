@@ -1,5 +1,10 @@
-export type BookingCategory = "dinner" | "meeting" | "birthday" | "other";
-export type BookingStatus = "planned" | "active" | "completed";
+import type {
+  ReservationCategory,
+  ReservationStatus,
+} from "../schemas/reservationSchema";
+
+export type BookingCategory = ReservationCategory;
+export type BookingStatus = ReservationStatus;
 
 export interface Booking {
   id: string;
@@ -14,4 +19,6 @@ export interface Booking {
   guestPhone: string;
   guestsCount: number;
   tableNumber: number;
+  reservationDate: string;
+  reservationTime: string;
 }

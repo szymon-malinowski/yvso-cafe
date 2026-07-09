@@ -61,7 +61,7 @@ function RouteComponent() {
       </Link>
 
       <h1 className="mb-2 break-words text-xl font-semibold">{booking.title}</h1>
-      <p className="mb-4 break-words text-sm text-gray-500">{booking.description}</p>
+      <p className="mb-4 break-words text-sm text-base-content/60">{booking.description}</p>
 
       <div className="grid gap-2 mb-6">
         <p>

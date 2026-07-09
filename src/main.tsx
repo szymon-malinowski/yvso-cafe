@@ -3,9 +3,11 @@ import ReactDOM from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { RouterProvider, createRouter } from "@tanstack/react-router";
 
+import { ThemeProvider } from "./components/olha/AppContext";
+import "./index.css";
+
 // Import the generated route tree
 import { routeTree } from "./routeTree.gen";
-import { ThemeProvider } from "./components/olha/AppContext";
 
 // Create a new router instance
 const router = createRouter({ routeTree });
@@ -24,11 +26,11 @@ if (!rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement);
   root.render(
     <StrictMode>
-      <QueryClientProvider client={queryClient}>
-        <ThemeProvider>
+      <ThemeProvider>
+        <QueryClientProvider client={queryClient}>
           <RouterProvider router={router} />
-        </ThemeProvider>
-      </QueryClientProvider>
+        </QueryClientProvider>
+      </ThemeProvider>
     </StrictMode>,
   );
 }

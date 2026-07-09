@@ -31,6 +31,8 @@ function RouteComponent() {
     guestPhone: booking.guestPhone,
     guestsCount: booking.guestsCount,
     tableNumber: booking.tableNumber,
+    reservationDate: booking.reservationDate ?? "",
+    reservationTime: booking.reservationTime ?? "",
   };
 
   return (
