@@ -13,7 +13,7 @@ const RootLayout = () => (
         About
       </Link>
 
-      <Link to="/reservation" className="[&.active]:font-bold">
+      <Link to="/reservations" className="[&.active]:font-bold">
         Reservierung
       </Link>
     </div>

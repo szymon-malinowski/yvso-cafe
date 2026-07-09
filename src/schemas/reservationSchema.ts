@@ -37,9 +37,17 @@ export const reservationSchema = z.object({
     message: "Bitte wähle einen Status aus",
   }),
   guestName: z.string().min(2, "Name muss mindestens 2 Zeichen lang sein"),
-  guestPhone: z.string().min(6, "Telefonnummer ist zu kurz"),
-  guestsCount: z
-    .coerce.number()
+  guestPhone: z
+    .string()
+    .trim()
+    .min(6, "Telefonnummer ist zu kurz")
+    .regex(
+      /^\+?[0-9\s()/-]+$/,
+      "Telefonnummer darf keine Buchstaben enthalten",
+    )
+    .regex(/\d/, "Telefonnummer muss mindestens eine Zahl enthalten"),
+  guestsCount: z.coerce
+    .number()
     .min(1, "Mindestens 1 Gast erforderlich")
     .max(20, "Maximal 20 Gäste pro Reservierung"),
   tableNumber: z.coerce.number().min(1, "Tischnummer muss mindestens 1 sein"),

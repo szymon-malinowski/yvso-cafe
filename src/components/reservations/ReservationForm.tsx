@@ -146,6 +146,7 @@ export const ReservationForm = ({
             >
               <input
                 className="input input-bordered w-full"
+                inputMode="tel"
                 name={field.name}
                 onBlur={field.handleBlur}
                 onChange={(event) => field.handleChange(event.target.value)}
@@ -236,7 +237,9 @@ export const ReservationForm = ({
             disabled={!canSubmit || isFormSubmitting || isSubmitting}
             type="submit"
           >
-            {isFormSubmitting || isSubmitting ? "Wird gespeichert..." : submitLabel}
+            {isFormSubmitting || isSubmitting
+              ? "Wird gespeichert..."
+              : submitLabel}
           </button>
         )}
       </form.Subscribe>
@@ -284,7 +287,11 @@ const getErrorMessage = (errors: unknown[]): string | undefined => {
   return "Ungültiger Wert";
 };
 
-const validateReservationForm = ({ value }: { value: ReservationFormValues }) => {
+const validateReservationForm = ({
+  value,
+}: {
+  value: ReservationFormValues;
+}) => {
   const result = reservationSchema.safeParse(value);
 
   if (result.success) {
