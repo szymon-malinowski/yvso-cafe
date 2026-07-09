@@ -1,2 +1,30 @@
 @import "tailwindcss";
-@plugin "daisyui";
+@custom-variant dark (&:where(.dark, .dark *));
+@plugin "daisyui" {
+  themes: lemonade --default, luxury --prefersdark;
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
+  body {
+    min-width: 320px;
+    min-height: 100vh;
+    margin: 0;
+    background: var(--color-base-200);
+    color: var(--color-base-content);
+    transition:
+      background-color 150ms ease,
+      color 150ms ease;
+  }
+
+  #root {
+    min-height: 100vh;
+  }
+}
