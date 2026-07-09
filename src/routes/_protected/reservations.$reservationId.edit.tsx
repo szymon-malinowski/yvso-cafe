@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { ReservationForm } from "../../components/reservations/ReservationForm";
 import { useBookings } from "../../hooks/useBookings";
@@ -21,10 +22,15 @@ function RouteComponent() {
   if (isError || !booking)
     return <p className="p-4">Reservierung nicht gefunden.</p>;
 
-  const { id, createdAt, updatedAt, ...rest } = booking;
   const formValues: ReservationFormValues = {
-    ...rest,
-    category: rest.category as ReservationFormValues["category"],
+    title: booking.title,
+    description: booking.description,
+    category: booking.category as ReservationFormValues["category"],
+    status: booking.status,
+    guestName: booking.guestName,
+    guestPhone: booking.guestPhone,
+    guestsCount: booking.guestsCount,
+    tableNumber: booking.tableNumber,
   };
 
   return (

@@ -1,9 +1,12 @@
+export type BookingCategory = "dinner" | "meeting" | "birthday" | "other";
+export type BookingStatus = "planned" | "active" | "completed";
+
 export interface Booking {
   id: string;
   title: string;
   description: string;
-  category: string;
-  status: "planned" | "active" | "completed";
+  category: BookingCategory;
+  status: BookingStatus;
   createdAt: string;
   updatedAt: string;
 
