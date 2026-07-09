@@ -28,7 +28,7 @@ export const ReservationForm = ({
   const form = useForm({
     defaultValues,
     validators: {
-      onChange: validateReservationForm,
+      onBlur: validateReservationForm,
       onSubmit: validateReservationForm,
     },
     onSubmit: async ({ value }) => {
@@ -38,7 +38,7 @@ export const ReservationForm = ({
 
   return (
     <form
-      className="grid gap-4 rounded-2xl bg-base-100 p-6 shadow-md md:p-8"
+      className="grid gap-4 rounded-2xl bg-base-100 p-6 shadow-md md:p-8 max-w-6xl mx-auto"
       onSubmit={(event) => {
         event.preventDefault();
         event.stopPropagation();
@@ -48,7 +48,7 @@ export const ReservationForm = ({
       <form.Field name="title">
         {(field) => (
           <FormField
-            error={getErrorMessage(field.state.meta.errors)}
+            error={getVisibleErrorMessage(field.state.meta)}
             label="Titel"
           >
             <input
@@ -66,7 +66,7 @@ export const ReservationForm = ({
       <form.Field name="description">
         {(field) => (
           <FormField
-            error={getErrorMessage(field.state.meta.errors)}
+            error={getVisibleErrorMessage(field.state.meta)}
             label="Beschreibung"
           >
             <textarea
@@ -85,7 +85,7 @@ export const ReservationForm = ({
         <form.Field name="category">
           {(field) => (
             <FormField
-              error={getErrorMessage(field.state.meta.errors)}
+              error={getVisibleErrorMessage(field.state.meta)}
               label="Kategorie"
             >
               <select
@@ -112,7 +112,7 @@ export const ReservationForm = ({
         <form.Field name="status">
           {(field) => (
             <FormField
-              error={getErrorMessage(field.state.meta.errors)}
+              error={getVisibleErrorMessage(field.state.meta)}
               label="Status"
             >
               <select
@@ -137,10 +137,10 @@ export const ReservationForm = ({
         </form.Field>
       </div>
       <div className="grid gap-4 md:grid-cols-2">
-        <form.Field name="reservationDate">
+        <form.Field name="bookingDate">
           {(field) => (
             <FormField
-              error={getErrorMessage(field.state.meta.errors)}
+              error={getVisibleErrorMessage(field.state.meta)}
               label="Datum"
             >
               <input
@@ -155,10 +155,10 @@ export const ReservationForm = ({
           )}
         </form.Field>
 
-        <form.Field name="reservationTime">
+        <form.Field name="bookingTime">
           {(field) => (
             <FormField
-              error={getErrorMessage(field.state.meta.errors)}
+              error={getVisibleErrorMessage(field.state.meta)}
               label="Uhrzeit"
             >
               <input
@@ -178,7 +178,7 @@ export const ReservationForm = ({
         <form.Field name="guestName">
           {(field) => (
             <FormField
-              error={getErrorMessage(field.state.meta.errors)}
+              error={getVisibleErrorMessage(field.state.meta)}
               label="Name des Gastes"
             >
               <input
@@ -197,7 +197,7 @@ export const ReservationForm = ({
         <form.Field name="guestPhone">
           {(field) => (
             <FormField
-              error={getErrorMessage(field.state.meta.errors)}
+              error={getVisibleErrorMessage(field.state.meta)}
               label="Telefonnummer"
             >
               <input
@@ -218,7 +218,7 @@ export const ReservationForm = ({
         <form.Field name="guestsCount">
           {(field) => (
             <FormField
-              error={getErrorMessage(field.state.meta.errors)}
+              error={getVisibleErrorMessage(field.state.meta)}
               label="Anzahl der Gäste"
             >
               <input
@@ -240,7 +240,7 @@ export const ReservationForm = ({
         <form.Field name="tableNumber">
           {(field) => (
             <FormField
-              error={getErrorMessage(field.state.meta.errors)}
+              error={getVisibleErrorMessage(field.state.meta)}
               label="Tischnummer"
             >
               <input
@@ -269,15 +269,17 @@ export const ReservationForm = ({
         selector={(state) => [state.canSubmit, state.isSubmitting] as const}
       >
         {([canSubmit, isFormSubmitting]) => (
-          <button
-            className="btn btn-primary w-full md:w-fit"
-            disabled={!canSubmit || isFormSubmitting || isSubmitting}
-            type="submit"
-          >
-            {isFormSubmitting || isSubmitting
-              ? "Wird gespeichert..."
-              : submitLabel}
-          </button>
+          <div className="flex justify-center">
+            <button
+              className="btn btn-primary w-full md:w-fit "
+              disabled={!canSubmit || isFormSubmitting || isSubmitting}
+              type="submit"
+            >
+              {isFormSubmitting || isSubmitting
+                ? "Wird gespeichert..."
+                : submitLabel}
+            </button>
+          </div>
         )}
       </form.Subscribe>
     </form>
@@ -294,9 +296,31 @@ const FormField = ({ children, error, label }: FormFieldProps) => (
   <label className="form-control grid gap-2">
     <span className="label-text font-medium">{label}</span>
     {children}
-    {error ? <span className="text-sm text-error">{error}</span> : null}
+    {error ? (
+      <span className="text-sm text-red-400 font-semibold">{error}</span>
+    ) : null}
   </label>
 );
+
+type FieldErrorMeta = {
+  errors: unknown[];
+  errorMap?: {
+    onSubmit?: unknown;
+  };
+  isBlurred: boolean;
+};
+
+const getVisibleErrorMessage = ({
+  errors,
+  errorMap,
+  isBlurred,
+}: FieldErrorMeta): string | undefined => {
+  if (!isBlurred && !errorMap?.onSubmit) {
+    return undefined;
+  }
+
+  return getErrorMessage(errors);
+};
 
 const getErrorMessage = (errors: unknown[]): string | undefined => {
   const [firstError] = errors.filter(Boolean);

@@ -46,10 +46,10 @@ export const reservationSchema = z.object({
   guestsCount: z.coerce
     .number()
     .min(1, "Mindestens 1 Gast erforderlich")
-    .max(20, "Maximal 20 Gäste pro Reservierung"),
+    .max(50, "Maximal 50 Gäste pro Reservierung"),
   tableNumber: z.coerce.number().min(1, "Tischnummer muss mindestens 1 sein"),
-  reservationDate: z.string().min(1, "Bitte wähle ein Datum aus"),
-  reservationTime: z.string().min(1, "Bitte wähle eine Uhrzeit aus"),
+  bookingDate: z.string().min(1, "Bitte wähle ein Datum aus"),
+  bookingTime: z.string().min(1, "Bitte wähle eine Uhrzeit aus"),
 });
 
 export type ReservationFormValues = z.infer<typeof reservationSchema>;
@@ -63,6 +63,6 @@ export const defaultReservationValues: ReservationFormValues = {
   guestPhone: "",
   guestsCount: 1,
   tableNumber: 1,
-  reservationDate: "",
-  reservationTime: "",
+  bookingDate: "",
+  bookingTime: "",
 };
