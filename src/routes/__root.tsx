@@ -37,7 +37,7 @@ const RootLayout = () => {
             type="button"
             onClick={toggleTheme}
           >
-            {theme === "luxury" ? "Lemonade Theme" : "Luxury Theme"}
+            {theme === "luxury" ? "Light Mode" : "Dark Mode"}
           </button>
         </nav>
       </header>
