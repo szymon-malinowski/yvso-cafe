@@ -38,7 +38,7 @@ export const ReservationForm = ({
 
   return (
     <form
-      className="grid gap-4"
+      className="grid gap-4 rounded-2xl bg-base-100 p-6 shadow-md md:p-8"
       onSubmit={(event) => {
         event.preventDefault();
         event.stopPropagation();

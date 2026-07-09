@@ -56,7 +56,7 @@ function RouteComponent() {
   return (
     <main className="p-4 max-w-xl">
       <Link to="/reservations" className="btn btn-ghost btn-sm mb-4">
-        ← Zurück zur Übersicht
+        Zurück zur Übersicht
       </Link>
 
       <h1 className="text-xl font-semibold mb-2">{booking.title}</h1>
