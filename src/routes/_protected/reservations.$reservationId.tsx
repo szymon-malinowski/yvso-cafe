@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import {
   createFileRoute,
   Link,
@@ -92,12 +93,12 @@ function RouteComponent() {
         <Link
           to="/reservations/$reservationId/edit"
           params={{ reservationId }}
-          className="btn btn-primary"
+          className="btn btn-primary w-full sm:w-fit"
         >
           Bearbeiten
         </Link>
         <button
-          className="btn btn-error"
+          className="btn btn-error w-full sm:w-fit"
           disabled={deleteBooking.isPending}
           onClick={handleDelete}
         >
