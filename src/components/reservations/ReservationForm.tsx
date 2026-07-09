@@ -136,6 +136,43 @@ export const ReservationForm = ({
           )}
         </form.Field>
       </div>
+      <div className="grid gap-4 md:grid-cols-2">
+        <form.Field name="reservationDate">
+          {(field) => (
+            <FormField
+              error={getErrorMessage(field.state.meta.errors)}
+              label="Datum"
+            >
+              <input
+                className="input input-bordered w-full"
+                name={field.name}
+                onBlur={field.handleBlur}
+                onChange={(event) => field.handleChange(event.target.value)}
+                type="date"
+                value={field.state.value}
+              />
+            </FormField>
+          )}
+        </form.Field>
+
+        <form.Field name="reservationTime">
+          {(field) => (
+            <FormField
+              error={getErrorMessage(field.state.meta.errors)}
+              label="Uhrzeit"
+            >
+              <input
+                className="input input-bordered w-full"
+                name={field.name}
+                onBlur={field.handleBlur}
+                onChange={(event) => field.handleChange(event.target.value)}
+                type="time"
+                value={field.state.value}
+              />
+            </FormField>
+          )}
+        </form.Field>
+      </div>
 
       <div className="grid gap-4 md:grid-cols-2">
         <form.Field name="guestName">
