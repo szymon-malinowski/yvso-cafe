@@ -8,9 +8,5 @@ export const Route = createFileRoute("/_public/")({
 });
 
 function Index() {
-  return (
-    <main>
-      <HeroComponent />
-    </main>
-  );
+  return <HeroComponent />;
 }
