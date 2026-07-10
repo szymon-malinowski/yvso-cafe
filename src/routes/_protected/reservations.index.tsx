@@ -1,15 +1,18 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useBookings } from "../../hooks/useBookings";
+import { useGetAllBookings } from "../../hooks/useBookings";
 import { Spinner } from "../../components/ui/Spinner";
+import { initMockData } from "../../services/mockData";
 
 export const Route = createFileRoute("/_protected/reservations/")({
+  beforeLoad: () => {
+    initMockData();
+  },
   component: RouteComponent,
 });
 
 function RouteComponent() {
-  const { useGetAll } = useBookings();
-  const { data, isLoading, isError } = useGetAll();
+  const { data, isLoading, isError } = useGetAllBookings();
 
   if (isLoading) return <Spinner label="Lädt Reservierungen..." />;
   if (isError)

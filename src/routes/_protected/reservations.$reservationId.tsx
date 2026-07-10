@@ -6,7 +6,10 @@ import {
   useNavigate,
   useRouterState,
 } from "@tanstack/react-router";
-import { useBookings } from "../../hooks/useBookings";
+import {
+  useDeleteBooking,
+  useGetOneBooking,
+} from "../../hooks/useBookings";
 import {
   reservationCategoryLabels,
   reservationStatusLabels,
@@ -27,10 +30,9 @@ function RouteComponent() {
   const isEditRoute = useRouterState({
     select: (state) => state.location.pathname.endsWith("/edit"),
   });
-  const { useGetOne, useDelete } = useBookings();
-
-  const { data: booking, isLoading, isError } = useGetOne(reservationId);
-  const deleteBooking = useDelete();
+  const { data: booking, isLoading, isError } =
+    useGetOneBooking(reservationId);
+  const deleteBooking = useDeleteBooking();
 
   if (isLoading) return <Spinner label="Lädt Reservierung..." />;
   if (isError || !booking)

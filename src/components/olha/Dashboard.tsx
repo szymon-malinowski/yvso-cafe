@@ -1,6 +1,6 @@
 // src/components/olha/Dashboard.tsx
 import { useMemo, useState } from 'react';
-import { useBookings } from '../../hooks/useBookings';
+import { useGetAllBookings } from '../../hooks/useBookings';
 import EmptyState from './EmptyState';
 import ItemFilters from './ItemFilters';
 import {
@@ -28,8 +28,7 @@ const currencyFormatter = new Intl.NumberFormat('de-DE', {
 });
 
 export default function Dashboard() {
-  const { useGetAll } = useBookings();
-  const { data: bookings = [], isLoading, isError } = useGetAll();
+  const { data: bookings = [], isLoading, isError } = useGetAllBookings();
   const [filters, setFilters] = useState<BookingFilters>(defaultFilters);
 
   const categories = useMemo(() => getCategories(bookings), [bookings]);

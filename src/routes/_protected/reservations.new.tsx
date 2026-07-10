@@ -1,7 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { ReservationForm } from "../../components/reservations/ReservationForm";
-import { useBookings } from "../../hooks/useBookings";
+import { useCreateBooking } from "../../hooks/useBookings";
 
 export const Route = createFileRoute("/_protected/reservations/new")({
   component: RouteComponent,
@@ -9,8 +9,7 @@ export const Route = createFileRoute("/_protected/reservations/new")({
 
 function RouteComponent() {
   const navigate = useNavigate();
-  const { useCreate } = useBookings();
-  const { mutateAsync: createBooking, isPending } = useCreate();
+  const { mutateAsync: createBooking, isPending } = useCreateBooking();
 
   return (
     <div className="p-6">

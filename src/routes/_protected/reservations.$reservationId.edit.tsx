@@ -1,7 +1,10 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { ReservationForm } from "../../components/reservations/ReservationForm";
-import { useBookings } from "../../hooks/useBookings";
+import {
+  useGetOneBooking,
+  useUpdateBooking,
+} from "../../hooks/useBookings";
 import type { ReservationFormValues } from "../../schemas/reservationSchema";
 import { Spinner } from "../../components/ui/Spinner";
 export const Route = createFileRoute(
@@ -13,10 +16,10 @@ export const Route = createFileRoute(
 function RouteComponent() {
   const { reservationId } = Route.useParams();
   const navigate = useNavigate();
-  const { useGetOne, useUpdate } = useBookings();
 
-  const { data: booking, isLoading, isError } = useGetOne(reservationId);
-  const updateBooking = useUpdate(reservationId);
+  const { data: booking, isLoading, isError } =
+    useGetOneBooking(reservationId);
+  const updateBooking = useUpdateBooking();
 
   if (isLoading) return <Spinner label="Lädt Reservierungen..." />;
   if (isError || !booking)
@@ -47,7 +50,7 @@ function RouteComponent() {
         submitError={updateBooking.error?.message}
         submitLabel="Änderungen speichern"
         onSubmit={async (values) => {
-          await updateBooking.mutateAsync(values);
+          await updateBooking.mutateAsync({ id: reservationId, data: values });
           navigate({
             to: "/reservations/$reservationId",
             params: { reservationId },

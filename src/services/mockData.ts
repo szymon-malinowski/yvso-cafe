@@ -1,16 +1,34 @@
-import { Booking } from "../types/booking";
+import type { Booking } from "../types/booking";
 
 const LOCAL_STORAGE_KEY = "restaurant_bookings";
+const MOCK_DATA_INITIALIZED_KEY = "restaurant_bookings_initialized";
 
 export const initMockData = () => {
-  if (localStorage.getItem(LOCAL_STORAGE_KEY)) return;
+  if (localStorage.getItem(MOCK_DATA_INITIALIZED_KEY) === "true") {
+    return;
+  }
+
+  const storedBookings = localStorage.getItem(LOCAL_STORAGE_KEY);
+
+  if (storedBookings) {
+    try {
+      const bookings = JSON.parse(storedBookings) as unknown;
+
+      if (Array.isArray(bookings) && bookings.length > 0) {
+        localStorage.setItem(MOCK_DATA_INITIALIZED_KEY, "true");
+        return;
+      }
+    } catch {
+      // Replace malformed stored data with valid sample reservations below.
+    }
+  }
 
   const sampleBookings: Booking[] = [
     {
       id: "1",
       title: "Geburtstagsfeier",
       description: "Tisch in der Nähe des Fensters, Blumen-Deko erwünscht.",
-      category: "VIP",
+      category: "birthday",
       status: "planned",
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
@@ -25,7 +43,7 @@ export const initMockData = () => {
       id: "2",
       title: "Geschäftsessen",
       description: "Ruhiger Tisch für wichtige Verhandlungen.",
-      category: "Business",
+      category: "meeting",
       status: "active",
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
@@ -39,4 +57,5 @@ export const initMockData = () => {
   ];
 
   localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(sampleBookings));
+  localStorage.setItem(MOCK_DATA_INITIALIZED_KEY, "true");
 };
