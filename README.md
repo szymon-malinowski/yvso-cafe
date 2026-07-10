@@ -1,17 +1,17 @@
-# Y.V.S.O. Café
+# ☕ Y.V.S.O. Café
 
 Y.V.S.O. Café ist eine responsive Café-Webanwendung mit digitaler Getränkekarte und vollständiger Reservierungsverwaltung. Gäste können sich über das Café informieren und Tische reservieren. Das Dashboard stellt die gespeicherten Reservierungen übersichtlich dar und bietet Kennzahlen, Suche, Filter und Sortierung.
 
 ![Screenshot der Y.V.S.O.-Café-Webanwendung](./public/screenshot.png)
 
-## Teammitglieder
+## 👥 Teammitglieder
 
 - Yana Khariebova
 - Vladislav Nedbailo
 - Szymon Malinowski
 - Olha Khodakivska
 
-## Features
+## ✨ Features
 
 - Responsive Startseite sowie Seiten für „Über uns“, Getränkekarte und Impressum
 - Dynamische Getränkekarte mit Daten von [TheCocktailDB](https://www.thecocktaildb.com/api.php)
@@ -23,7 +23,7 @@ Y.V.S.O. Café ist eine responsive Café-Webanwendung mit digitaler Getränkekar
 - Helles und dunkles Theme mit gespeicherter Benutzerauswahl
 - Lade-, Fehler- und Leerzustände für eine klare Benutzerführung
 
-## Verwendete Technologien
+## 🛠️ Verwendete Technologien
 
 - React 19 und TypeScript
 - Vite
@@ -37,7 +37,7 @@ Y.V.S.O. Café ist eine responsive Café-Webanwendung mit digitaler Getränkekar
 - Browser-`localStorage`
 - ESLint
 
-## Installation
+## 📦 Installation
 
 Voraussetzung ist [Node.js](https://nodejs.org/) in Version `^20.19.0` oder `>=22.12.0` sowie npm.
 
@@ -47,7 +47,7 @@ cd yvso-cafe
 npm install
 ```
 
-## Projekt starten
+## 🚀 Projekt starten
 
 Den Entwicklungsserver starten:
 
@@ -65,7 +65,7 @@ npm run lint     # Code mit ESLint prüfen
 npm run preview  # Produktions-Build lokal anzeigen
 ```
 
-## Projektstruktur
+## 🗂️ Projektstruktur
 
 ```text
 yvso-cafe/
@@ -85,7 +85,7 @@ yvso-cafe/
 └── vite.config.ts         # Vite- und Router-Konfiguration
 ```
 
-## Aufgabenverteilung im Team
+## 🤝 Aufgabenverteilung im Team
 
 | Teammitglied | Aufgabenbereich |
 | --- | --- |
@@ -94,6 +94,6 @@ yvso-cafe/
 | Yana Khariebova | Reservierungsformular, Erstellen- und Bearbeiten-Routen, Zod-Validierung, Datums-/Zeitauswahl und Spinner |
 | Olha Khodakivska | Dashboard, Kennzahlen, Suche, Filter, Sortierung, Empty State, Theme-Context und responsive Optimierung |
 
-## Datenhinweis
+## ℹ️ Datenhinweis
 
 Reservierungen werden ausschließlich im `localStorage` des verwendeten Browsers gespeichert und nicht an einen Server übertragen. Für das Laden der Getränkekarte wird eine Internetverbindung benötigt.
