@@ -1,0 +1,9 @@
+<svg width="500" height="260" viewBox="0 0 500 260" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>Y.V.S.O Café logo with coffee bean</title>
+<desc>A wordmark Y.V.S.O Café with a small gold coffee bean accent above it</desc>
+
+<text x="250" y="120" text-anchor="middle" font-family="Georgia, serif" font-size="42" font-weight="700" fill="#8a6d1f" letter-spacing="3">Y.V.S.O</text>
+<text x="250" y="156" text-anchor="middle" font-family="Georgia, serif" font-size="20" font-style="italic" fill="#b8912f" letter-spacing="5">Café</text>
+<ellipse cx="250" cy="195" rx="13" ry="18" fill="#c9a24b" transform="rotate(20 250 195)"/>
+<path d="M 250 179 Q 250 195 250 211" stroke="#8a6d1f" stroke-width="1.5" fill="none" transform="rotate(20 250 195)"/>
+</svg>
