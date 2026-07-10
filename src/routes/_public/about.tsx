@@ -74,7 +74,7 @@ function About() {
             <div className="mt-9 flex flex-wrap items-center gap-4">
               <Link
                 to="/reservations"
-                className="group inline-flex items-center gap-3 rounded-full bg-primary px-6 py-3.5 text-sm font-bold text-primary-content shadow-lg shadow-primary/20 transition hover:-translate-y-0.5 hover:bg-primary/85"
+                className="group inline-flex items-center gap-3 rounded-full bg-primary/75 px-6 py-3.5 text-sm font-bold text-primary-content shadow-lg shadow-primary/20 transition hover:-translate-y-0.5 hover:bg-primary/90"
               >
                 Tisch reservieren
                 <ArrowIcon />

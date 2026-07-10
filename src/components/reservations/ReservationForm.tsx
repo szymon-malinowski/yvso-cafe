@@ -271,7 +271,7 @@ export const ReservationForm = ({
         {([canSubmit, isFormSubmitting]) => (
           <div className="flex justify-center">
             <button
-              className="btn btn-primary w-full md:w-fit "
+              className="btn btn-primary w-full bg-primary/75 hover:bg-primary/90 md:w-fit"
               disabled={!canSubmit || isFormSubmitting || isSubmitting}
               type="submit"
             >
