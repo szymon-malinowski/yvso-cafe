@@ -6,7 +6,7 @@ import tailwindcss from "@tailwindcss/vite";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "/yvso-cafe/",
+  base: process.env.NODE_ENV === "production" ? "/yvso-cafe/" : "/",
   plugins: [
     // Please make sure that '@tanstack/router-plugin' is passed before '@vitejs/plugin-react'
     tanstackRouter({
