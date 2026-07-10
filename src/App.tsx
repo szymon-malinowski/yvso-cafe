@@ -3,7 +3,7 @@ import "./index.css";
 function App() {
   return (
     <>
-      <h1>Y.V.S.O Cafe</h1>
+      <h1>Y.V.S.O. Café</h1>
     </>
   );
 }
