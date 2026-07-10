@@ -52,7 +52,7 @@ const RootLayout = () => {
               </Link>
 
               <Link to="/about" className={navLinkClass} onClick={closeMenu}>
-                About
+                Über uns
               </Link>
 
               <Link
@@ -63,7 +63,11 @@ const RootLayout = () => {
                 Reservierung
               </Link>
 
-              <Link to="/dashboard" className={navLinkClass} onClick={closeMenu}>
+              <Link
+                to="/dashboard"
+                className={navLinkClass}
+                onClick={closeMenu}
+              >
                 Dashboard
               </Link>
             </div>
