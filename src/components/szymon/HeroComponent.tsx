@@ -34,8 +34,8 @@ const HeroComponent = () => {
         className="absolute inset-0 -z-20 h-full w-full object-cover object-center"
       />
 
-      <div className="absolute inset-0 -z-10 bg-black/35 dark:bg-black/55" />
-      <div className="absolute inset-0 -z-10 hidden bg-[linear-gradient(90deg,rgba(0,0,0,0.82)_0%,rgba(0,0,0,0.48)_55%,rgba(0,0,0,0.18)_100%)] dark:block" />
+      <div className="absolute inset-0 -z-10 bg-black/35 dark:bg-black/45" />
+      <div className="absolute inset-0 -z-10 hidden ] dark:block" />
       <div className="absolute inset-x-0 bottom-0 -z-10 hidden h-1/2 bg-gradient-to-t from-black/70 to-transparent dark:block" />
 
       <div className="mx-auto flex w-full max-w-6xl flex-col px-5 py-10 sm:px-8 sm:py-14 lg:py-16">
