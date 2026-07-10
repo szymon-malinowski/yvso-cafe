@@ -7,7 +7,7 @@ const Header = () => {
   const closeMenu = () => setIsMenuOpen(false);
 
   return (
-    <header className="sticky top-0 z-10 border-b border-base-300 bg-base-100/90 shadow-sm backdrop-blur">
+    <header className="sticky top-0 z-10 border-b border-base-content/15 bg-base-100/95 shadow-sm backdrop-blur">
       <nav
         className="mx-auto max-w-6xl px-4 py-3"
         aria-label="Hauptnavigation"
@@ -15,7 +15,7 @@ const Header = () => {
         <div className="flex items-center justify-between gap-3 md:hidden">
           <Link
             to="/"
-            className="text-base font-bold text-base-content"
+            className="rounded-md text-base font-bold text-base-content focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-base-100"
             onClick={closeMenu}
           >
             Y.V.S.O. Café

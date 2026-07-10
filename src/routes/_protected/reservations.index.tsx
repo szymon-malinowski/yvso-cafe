@@ -18,7 +18,10 @@ function RouteComponent() {
     return (
       <div className="p-4 text-center flex gap-6 flex-col items-center">
         <p>Keine Reservierungen gefunden.</p>
-        <Link to="/reservations/new" className="btn btn-primary mt-2 w-full sm:w-fit">
+        <Link
+          to="/reservations/new"
+          className="btn btn-primary mt-2 w-full bg-primary/75 hover:bg-primary/90 sm:w-fit"
+        >
           Erste Reservierung erstellen
         </Link>
       </div>
@@ -29,7 +32,10 @@ function RouteComponent() {
     <main className="p-4">
       <div className="flex justify-between items-center mx-auto max-w-6xl p-6">
         <h1 className="text-xl font-semibold">Reservierungen</h1>
-        <Link to="/reservations/new" className="btn btn-primary w-full sm:w-fit">
+        <Link
+          to="/reservations/new"
+          className="btn btn-primary w-full bg-primary/75 hover:bg-primary/90 sm:w-fit"
+        >
           Neue Reservierung
         </Link>
       </div>
