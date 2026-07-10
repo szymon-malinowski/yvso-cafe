@@ -1,7 +1,7 @@
 const CATEGORY_ENDPOINT =
   "https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list";
-const COCKTAIL_ENDPOINT =
-  "https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail";
+const COFFEE_COCKTAIL_ENDPOINT =
+  "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=coffee";
 
 type CocktailCategoryResponse = {
   drinks: Array<{ strCategory: string }> | null;
@@ -11,13 +11,17 @@ type CocktailResponse = {
   drinks:
     | Array<{
         idDrink: string;
+        strCategory: string | null;
         strDrink: string;
         strDrinkThumb: string;
+        strInstructions: string | null;
+        strInstructionsDE: string | null;
       }>
     | null;
 };
 
 export type Cocktail = {
+  description: string;
   id: string;
   imageUrl: string;
   name: string;
@@ -46,7 +50,7 @@ export const cocktailService = {
     ];
   },
   getCocktails: async (): Promise<Cocktail[]> => {
-    const response = await fetch(COCKTAIL_ENDPOINT);
+    const response = await fetch(COFFEE_COCKTAIL_ENDPOINT);
 
     if (!response.ok) {
       throw new Error("Die Cocktails konnten nicht geladen werden.");
@@ -59,16 +63,30 @@ export const cocktailService = {
     }
 
     const cocktails = data.drinks.flatMap(
-      ({ idDrink, strDrink, strDrinkThumb }) => {
+      ({
+        idDrink,
+        strCategory,
+        strDrink,
+        strDrinkThumb,
+        strInstructions,
+        strInstructionsDE,
+      }) => {
         const id = idDrink?.trim();
         const name = strDrink?.trim();
         const imageUrl = strDrinkThumb?.trim();
+        const description =
+          strInstructionsDE?.trim() ||
+          strInstructions?.trim() ||
+          strCategory?.trim() ||
+          "Kaffeespezialität aus unserer aktuellen Auswahl";
 
         if (!id || !name || !imageUrl) {
           return [];
         }
 
-        return [{ id, name, imageUrl: `${imageUrl}/medium` }];
+        return [
+          { description, id, name, imageUrl: `${imageUrl}/medium` },
+        ];
       },
     );
 

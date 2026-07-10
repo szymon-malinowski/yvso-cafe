@@ -1,5 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createFileRoute } from "@tanstack/react-router";
+import { contactDetails } from "../../config/contactDetails";
 
 export const Route = createFileRoute("/_public/impressum")({
   component: Impressum,
@@ -47,6 +48,35 @@ function Impressum() {
           </section>
 
           <section
+            aria-labelledby="contact-details"
+            className="border-t border-base-content/10 pt-8"
+          >
+            <h2
+              id="contact-details"
+              className="font-serif text-2xl font-semibold text-base-content"
+            >
+              Kontakt
+            </h2>
+            <address className="mt-4 not-italic leading-7 text-base-content/70">
+              <span>Telefon: </span>
+              <a
+                href={`tel:${contactDetails.phoneHref}`}
+                className="underline decoration-base-content/25 underline-offset-4 transition-colors hover:text-primary"
+              >
+                {contactDetails.phone}
+              </a>
+              <br />
+              <span>E-Mail: </span>
+              <a
+                href={`mailto:${contactDetails.email}`}
+                className="underline decoration-base-content/25 underline-offset-4 transition-colors hover:text-primary"
+              >
+                {contactDetails.email}
+              </a>
+            </address>
+          </section>
+
+          <section
             aria-labelledby="project-notice"
             className="border-t border-base-content/10 pt-8"
           >
@@ -60,8 +90,22 @@ function Impressum() {
               Diese Website ist ein nicht kommerzielles Lernprojekt. Die hier
               verwendeten Café- und Adressdaten dienen ausschließlich zu
               Demonstrationszwecken. Vor einer realen Veröffentlichung müssen
-              vollständige und rechtlich geprüfte Unternehmens- und
-              Kontaktdaten ergänzt werden.
+              vollständige und rechtlich geprüfte Unternehmens- und Kontaktdaten
+              ergänzt werden.
+            </p>
+          </section>
+          <section>
+            <p className="mt-8 text-xs text-base-content/50">
+              Getränkedaten bereitgestellt von{" "}
+              <a
+                href="https://www.thecocktaildb.com/api.php"
+                target="_blank"
+                rel="noreferrer"
+                className="font-semibold underline underline-offset-4 hover:text-primary"
+              >
+                TheCocktailDB
+              </a>
+              .
             </p>
           </section>
         </div>

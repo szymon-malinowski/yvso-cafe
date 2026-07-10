@@ -17,7 +17,9 @@ const MenuCard = ({ title, description, src }: TCard) => {
       </figure>
       <div className="card-body">
         <h2 className="card-title font-serif text-2xl">{title}</h2>
-        <p className="text-sm text-base-content/60">{description}</p>
+        <p className="line-clamp-4 text-sm text-base-content/60">
+          {description}
+        </p>
       </div>
     </article>
   );
