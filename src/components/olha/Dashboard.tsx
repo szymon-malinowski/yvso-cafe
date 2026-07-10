@@ -50,7 +50,7 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen bg-base-200 text-base-content transition-colors">
       <div className="mx-auto max-w-6xl space-y-6 p-4 sm:p-6">
-        <header className="rounded-xl border border-base-300 bg-base-100 p-5 shadow-sm">
+        <header className="border border-base-300 bg-base-100 p-5 shadow-sm dark:border-base-content/10 dark:bg-base-300">
           <div className="min-w-0">
             <p className="text-sm font-medium text-primary">Y.V.S.O Café</p>
             <h1 className="text-2xl font-bold text-base-content sm:text-3xl">YVSO Café Dashboard</h1>
@@ -58,32 +58,32 @@ export default function Dashboard() {
         </header>
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
-          <div className="rounded-xl border border-primary/20 bg-primary/10 p-4 shadow-sm">
-            <h3 className="text-sm font-medium text-primary">Gesamte Reservierungen</h3>
-            <p className="mt-1 text-2xl font-bold">{total}</p>
+          <div className="border border-primary/20 bg-primary/10 p-4 shadow-sm dark:border-primary/30 dark:bg-primary/20">
+            <h3 className="text-sm font-semibold text-base-content/85">Gesamte Reservierungen</h3>
+            <p className="mt-1 text-2xl font-bold text-base-content">{total}</p>
           </div>
 
-          <div className="rounded-xl border border-success/20 bg-success/10 p-4 shadow-sm">
-            <h3 className="text-sm font-medium text-success">Aktive Reservierungen</h3>
-            <p className="mt-1 text-2xl font-bold">{statusCounts.active}</p>
+          <div className="border border-success/20 bg-success/10 p-4 shadow-sm dark:border-success/30 dark:bg-success/20">
+            <h3 className="text-sm font-semibold text-base-content/85">Aktive Reservierungen</h3>
+            <p className="mt-1 text-2xl font-bold text-base-content">{statusCounts.active}</p>
           </div>
 
-          <div className="rounded-xl border border-warning/20 bg-warning/10 p-4 shadow-sm">
-            <h3 className="text-sm font-medium text-warning">Ø Gäste pro Tisch</h3>
-            <p className="mt-1 text-2xl font-bold">{avgGuests}</p>
+          <div className="border border-warning/20 bg-warning/10 p-4 shadow-sm dark:border-warning/30 dark:bg-warning/20">
+            <h3 className="text-sm font-semibold text-base-content/85">Ø Gäste pro Tisch</h3>
+            <p className="mt-1 text-2xl font-bold text-base-content">{avgGuests}</p>
           </div>
 
-          <div className="rounded-xl border border-secondary/20 bg-secondary/10 p-4 shadow-sm">
-            <h3 className="text-sm font-medium text-secondary">Erwarteter Umsatz</h3>
-            <p className="mt-1 text-2xl font-bold">{currencyFormatter.format(revenue)}</p>
+          <div className="border border-secondary/20 bg-secondary/10 p-4 shadow-sm dark:border-primary/20 dark:bg-primary/10">
+            <h3 className="text-sm font-semibold text-base-content/85">Erwarteter Umsatz</h3>
+            <p className="mt-1 text-2xl font-bold text-base-content">{currencyFormatter.format(revenue)}</p>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-3 ">
           {Object.entries(statusCounts).map(([status, count]) => (
             <div
               key={status}
-              className="rounded-xl border border-base-300 bg-base-100 p-4 shadow-sm"
+              className="border border-base-300 bg-base-100 p-4 shadow-sm dark:border-primary/20 dark:bg-primary/10 "
             >
               <h3 className="text-sm font-medium text-base-content/65">
                 {statusLabels[status as keyof typeof statusLabels]}
@@ -93,8 +93,11 @@ export default function Dashboard() {
           ))}
         </div>
 
-        <div className="rounded-xl border border-base-300 bg-base-100 p-6 shadow-sm">
-          <h2 className="mb-4 text-xl font-semibold text-base-content">Neueste Reservierungen</h2>
+        <div className="border border-base-300 bg-base-100 p-6 shadow-sm dark:border-primary/20 dark:bg-primary/10">
+          <h2 className="mb-4 text-xl font-semibold leading-tight text-base-content">
+            <span className="block sm:inline">Neueste</span>{' '}
+            <span className="block sm:inline">Reservierungen</span>
+          </h2>
           {recent.length === 0 ? (
             <p className="text-base-content/60">Keine Reservierungen vorhanden.</p>
           ) : (
@@ -107,7 +110,7 @@ export default function Dashboard() {
                       {booking.guestsCount} Gäste • Tisch {booking.tableNumber} • {booking.category}
                     </p>
                   </div>
-                  <span className="w-fit shrink-0 rounded-full bg-base-200 px-2 py-1 text-xs font-semibold text-base-content">
+                  <span className="w-fit shrink-0 bg-base-200 px-2 py-1 text-xs font-semibold text-base-content dark:bg-base-300">
                     {statusLabels[booking.status]}
                   </span>
                 </li>
@@ -123,17 +126,20 @@ export default function Dashboard() {
           onReset={() => setFilters(defaultFilters)}
         />
 
-        <div className="rounded-xl border border-base-300 bg-base-100 p-6 shadow-sm">
-          <h2 className="mb-4 text-xl font-semibold text-base-content">Gefilterte Reservierungen</h2>
+        <div className="border border-base-300 bg-base-100 p-6 shadow-sm dark:border-primary/20 dark:bg-primary/10">
+          <h2 className="mb-4 text-xl font-semibold leading-tight text-base-content">
+            <span className="block sm:inline">Gefilterte</span>{' '}
+            <span className="block sm:inline">Reservierungen</span>
+          </h2>
           {filteredBookings.length === 0 ? (
             <EmptyState />
           ) : (
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               {filteredBookings.map((booking) => (
-                <article key={booking.id} className="rounded-xl border border-base-300 p-4">
+                <article key={booking.id} className="border border-base-300 p-4 dark:border-base-content/10 dark:bg-base-300">
                   <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                     <h3 className="min-w-0 break-words font-semibold text-base-content">{booking.title}</h3>
-                    <span className="w-fit shrink-0 rounded-full bg-base-200 px-2 py-1 text-xs font-semibold text-base-content">
+                    <span className="w-fit shrink-0 bg-base-200 px-2 py-1 text-xs font-semibold text-base-content dark:bg-base-300">
                       {statusLabels[booking.status]}
                     </span>
                   </div>
