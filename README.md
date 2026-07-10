@@ -1,77 +1,99 @@
-# React + TypeScript + Vite
+# Y.V.S.O. Café
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Y.V.S.O. Café ist eine responsive Café-Webanwendung mit digitaler Getränkekarte und vollständiger Reservierungsverwaltung. Gäste können sich über das Café informieren und Tische reservieren. Das Dashboard stellt die gespeicherten Reservierungen übersichtlich dar und bietet Kennzahlen, Suche, Filter und Sortierung.
 
-Currently, two official plugins are available:
+![Screenshot der Y.V.S.O.-Café-Webanwendung](./public/screenshot.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Teammitglieder
 
-## React Compiler
+- Yana Khariebova
+- Vladislav Nedbailo
+- Szymon Malinowski
+- Olha Khodakivska
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+## Features
 
-Note: This will impact Vite dev & build performances.
+- Responsive Startseite sowie Seiten für „Über uns“, Getränkekarte und Impressum
+- Dynamische Getränkekarte mit Daten von [TheCocktailDB](https://www.thecocktaildb.com/api.php)
+- Reservierungen erstellen, anzeigen, bearbeiten und löschen (CRUD)
+- Formularvalidierung mit verständlichen Fehlermeldungen
+- Auswahl verfügbarer Uhrzeiten passend zu den Öffnungszeiten in 15-Minuten-Schritten
+- Speicherung der Reservierungen im Browser über `localStorage`
+- Dashboard mit Kennzahlen, aktuellen Reservierungen, Suche, Filtern und Sortierung
+- Helles und dunkles Theme mit gespeicherter Benutzerauswahl
+- Lade-, Fehler- und Leerzustände für eine klare Benutzerführung
 
-## Expanding the ESLint configuration
+## Verwendete Technologien
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- React 19 und TypeScript
+- Vite
+- TanStack Router
+- TanStack Query
+- TanStack Form
+- Zod
+- React Context API und React Hooks
+- Tailwind CSS 4 und daisyUI
+- TheCocktailDB API
+- Browser-`localStorage`
+- ESLint
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Installation
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Voraussetzung ist [Node.js](https://nodejs.org/) in Version `^20.19.0` oder `>=22.12.0` sowie npm.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+git clone <repository-url>
+cd yvso-cafe
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Projekt starten
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Den Entwicklungsserver starten:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+npm run dev
 ```
+
+Anschließend die von Vite im Terminal ausgegebene lokale Adresse im Browser öffnen.
+
+Weitere Befehle:
+
+```bash
+npm run build    # Produktions-Build erstellen
+npm run lint     # Code mit ESLint prüfen
+npm run preview  # Produktions-Build lokal anzeigen
+```
+
+## Projektstruktur
+
+```text
+yvso-cafe/
+├── markdown/              # Aufgabenstellung und Projektnotizen
+├── public/                # Bilder, Logos und weitere statische Dateien
+├── src/
+│   ├── components/        # Wiederverwendbare UI- und Formular-Komponenten
+│   ├── config/            # Kontaktdaten und Öffnungszeiten
+│   ├── hooks/             # TanStack-Query-Hooks für Reservierungen
+│   ├── routes/            # Dateibasierte Seiten und Routen
+│   ├── schemas/           # Zod-Schema für Reservierungen
+│   ├── services/          # Reservierungs- und Getränke-Datenzugriff
+│   ├── types/             # Gemeinsame TypeScript-Typen
+│   ├── main.tsx           # App-Einstieg und Provider
+│   └── index.css          # Globale Styles und Themes
+├── package.json           # Abhängigkeiten und npm-Befehle
+└── vite.config.ts         # Vite- und Router-Konfiguration
+```
+
+## Aufgabenverteilung im Team
+
+| Teammitglied | Aufgabenbereich |
+| --- | --- |
+| Szymon Malinowski | Projektsetup, Routing, Layout und Navigation, Start-/Über-uns-/Menü-/Impressumsseiten, Getränke-API und UI-Polishing |
+| Vladislav Nedbailo | Datenmodell, Mock-Service mit `localStorage`, TanStack Query, CRUD-Hooks sowie Lade- und Fehlerbehandlung |
+| Yana Khariebova | Reservierungsformular, Erstellen- und Bearbeiten-Routen, Zod-Validierung, Datums-/Zeitauswahl und Spinner |
+| Olha Khodakivska | Dashboard, Kennzahlen, Suche, Filter, Sortierung, Empty State, Theme-Context und responsive Optimierung |
+
+## Datenhinweis
+
+Reservierungen werden ausschließlich im `localStorage` des verwendeten Browsers gespeichert und nicht an einen Server übertragen. Für das Laden der Getränkekarte wird eine Internetverbindung benötigt.
