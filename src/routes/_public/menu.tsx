@@ -13,7 +13,7 @@ const menuItemLimit = 12;
 
 function Menu() {
   const { data, error, isLoading, refetch, isFetching } = useQuery({
-    queryKey: ["cocktails"],
+    queryKey: ["cocktails", "coffee"],
     queryFn: cocktailService.getCocktails,
     staleTime: 1000 * 60 * 60,
   });
@@ -29,8 +29,8 @@ function Menu() {
             Getränkekarte
           </h1>
           <p className="mt-5 text-lg leading-8 text-base-content/70">
-            Entdecke ausgewählte Klassiker und neue Favoriten aus unserer
-            Cocktailkarte.
+            Entdecke klassische und kreative Kaffeespezialitäten aus unserer
+            Getränkekarte.
           </p>
         </div>
 
@@ -66,25 +66,14 @@ function Menu() {
               <MenuCard
                 key={cocktail.id}
                 title={cocktail.name}
-                description="Cocktail aus unserer aktuellen Auswahl"
+                description={cocktail.description}
                 src={cocktail.imageUrl}
               />
             ))}
           </div>
         )}
 
-        <p className="mt-8 text-xs text-base-content/50">
-          Kategorien bereitgestellt von{" "}
-          <a
-            href="https://www.thecocktaildb.com/api.php"
-            target="_blank"
-            rel="noreferrer"
-            className="font-semibold underline underline-offset-4 hover:text-primary"
-          >
-            TheCocktailDB
-          </a>
-          .
-        </p>
+        
       </div>
     </section>
   );

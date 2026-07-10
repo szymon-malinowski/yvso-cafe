@@ -90,8 +90,22 @@ function Impressum() {
               Diese Website ist ein nicht kommerzielles Lernprojekt. Die hier
               verwendeten Café- und Adressdaten dienen ausschließlich zu
               Demonstrationszwecken. Vor einer realen Veröffentlichung müssen
-              vollständige und rechtlich geprüfte Unternehmens- und
-              Kontaktdaten ergänzt werden.
+              vollständige und rechtlich geprüfte Unternehmens- und Kontaktdaten
+              ergänzt werden.
+            </p>
+          </section>
+          <section>
+            <p className="mt-8 text-xs text-base-content/50">
+              Getränkedaten bereitgestellt von{" "}
+              <a
+                href="https://www.thecocktaildb.com/api.php"
+                target="_blank"
+                rel="noreferrer"
+                className="font-semibold underline underline-offset-4 hover:text-primary"
+              >
+                TheCocktailDB
+              </a>
+              .
             </p>
           </section>
         </div>
