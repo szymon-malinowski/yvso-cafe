@@ -34,9 +34,9 @@ const HeroComponent = () => {
         className="absolute inset-0 -z-20 h-full w-full object-cover object-center"
       />
 
-      <div className="absolute inset-0 -z-10 bg-black/55" />
-      <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(0,0,0,0.82)_0%,rgba(0,0,0,0.48)_55%,rgba(0,0,0,0.18)_100%)]" />
-      <div className="absolute inset-x-0 bottom-0 -z-10 h-1/2 bg-gradient-to-t from-black/70 to-transparent" />
+      <div className="absolute inset-0 -z-10 bg-black/35 dark:bg-black/55" />
+      <div className="absolute inset-0 -z-10 hidden bg-[linear-gradient(90deg,rgba(0,0,0,0.82)_0%,rgba(0,0,0,0.48)_55%,rgba(0,0,0,0.18)_100%)] dark:block" />
+      <div className="absolute inset-x-0 bottom-0 -z-10 hidden h-1/2 bg-gradient-to-t from-black/70 to-transparent dark:block" />
 
       <div className="mx-auto flex w-full max-w-6xl flex-col px-5 py-10 sm:px-8 sm:py-14 lg:py-16">
         <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.28em] text-white/75">
@@ -58,7 +58,7 @@ const HeroComponent = () => {
             <div className="mt-9 flex flex-wrap gap-4">
               <Link
                 to="/reservations"
-                className="group inline-flex items-center gap-3 rounded-full bg-primary px-6 py-3.5 text-sm font-bold text-primary-content shadow-xl shadow-black/20 transition hover:-translate-y-0.5 hover:bg-primary/90 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+                className="group inline-flex items-center gap-3 rounded-full bg-primary/75 px-6 py-3.5 text-sm font-bold text-primary-content shadow-xl shadow-black/20 transition hover:-translate-y-0.5 hover:bg-primary/90 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
               >
                 Tisch reservieren
                 <ArrowIcon />

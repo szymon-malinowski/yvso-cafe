@@ -30,6 +30,23 @@
 }
 
 @layer components {
+  .btn-primary {
+    border-color: color-mix(in srgb, var(--color-primary) 80%, transparent);
+    background-color: color-mix(
+      in srgb,
+      var(--color-primary) 75%,
+      transparent
+    );
+  }
+
+  .btn-primary:hover {
+    background-color: color-mix(
+      in srgb,
+      var(--color-primary) 90%,
+      transparent
+    );
+  }
+
   .burger-button {
     display: inline-grid;
     width: 2.75rem;

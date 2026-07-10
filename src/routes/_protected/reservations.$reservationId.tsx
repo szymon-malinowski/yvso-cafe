@@ -94,7 +94,7 @@ function RouteComponent() {
         <Link
           to="/reservations/$reservationId/edit"
           params={{ reservationId }}
-          className="btn btn-primary w-full sm:w-fit"
+          className="btn btn-primary w-full bg-primary/75 hover:bg-primary/90 sm:w-fit"
         >
           Bearbeiten
         </Link>
