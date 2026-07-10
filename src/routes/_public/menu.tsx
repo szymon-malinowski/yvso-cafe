@@ -1,6 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 import { useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
+import MenuCard from "../../components/szymon/MenuCard";
 import { Spinner } from "../../components/ui/Spinner";
 import { cocktailService } from "../../services/cocktailService";
 
@@ -8,24 +9,12 @@ export const Route = createFileRoute("/_public/menu")({
   component: Menu,
 });
 
-const categoryLabels: Record<string, string> = {
-  "Ordinary Drink": "Klassische Drinks",
-  Cocktail: "Cocktails",
-  Shake: "Shakes",
-  "Other / Unknown": "Weitere Getränke",
-  Cocoa: "Kakao",
-  Shot: "Shots",
-  "Coffee / Tea": "Kaffee & Tee",
-  "Homemade Liqueur": "Hausgemachte Liköre",
-  "Punch / Party Drink": "Bowle & Partygetränke",
-  Beer: "Bier",
-  "Soft Drink": "Alkoholfreie Getränke",
-};
+const menuItemLimit = 12;
 
 function Menu() {
   const { data, error, isLoading, refetch, isFetching } = useQuery({
-    queryKey: ["cocktail-categories"],
-    queryFn: cocktailService.getCategories,
+    queryKey: ["cocktails"],
+    queryFn: cocktailService.getCocktails,
     staleTime: 1000 * 60 * 60,
   });
 
@@ -40,14 +29,14 @@ function Menu() {
             Getränkekarte
           </h1>
           <p className="mt-5 text-lg leading-8 text-base-content/70">
-            Entdecke unsere Getränkekategorien – von klassischen Cocktails und
-            Kaffee bis zu alkoholfreien Erfrischungen.
+            Entdecke ausgewählte Klassiker und neue Favoriten aus unserer
+            Cocktailkarte.
           </p>
         </div>
 
         {isLoading ? (
           <div className="mt-10 rounded-2xl border border-base-content/10 bg-base-100">
-            <Spinner label="Getränkekategorien werden geladen..." />
+            <Spinner label="Cocktails werden geladen..." />
           </div>
         ) : error ? (
           <div
@@ -55,7 +44,7 @@ function Menu() {
             role="alert"
           >
             <h2 className="font-semibold text-base-content">
-              Kategorien konnten nicht geladen werden
+              Cocktails konnten nicht geladen werden
             </h2>
             <p className="mt-2 text-sm text-base-content/70">
               {error instanceof Error
@@ -72,20 +61,14 @@ function Menu() {
             </button>
           </div>
         ) : (
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {data?.map((category, index) => (
-              <article
-                key={category}
-                className="group rounded-2xl border border-base-content/10 bg-base-100 p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md"
-              >
-                <span className="font-mono text-xs font-bold tracking-[0.18em] text-primary">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <h2 className="mt-5 font-serif text-2xl font-semibold text-base-content">
-                  {categoryLabels[category] ?? category}
-                </h2>
-                <p className="mt-2 text-sm text-base-content/55">{category}</p>
-              </article>
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {data?.slice(0, menuItemLimit).map((cocktail) => (
+              <MenuCard
+                key={cocktail.id}
+                title={cocktail.name}
+                description="Cocktail aus unserer aktuellen Auswahl"
+                src={cocktail.imageUrl}
+              />
             ))}
           </div>
         )}
