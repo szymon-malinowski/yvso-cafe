@@ -26,11 +26,11 @@ export default function ItemFilters({ filters, categories, onChange, onReset }: 
   }
 
   return (
-    <section className="grid grid-cols-1 gap-4 rounded-xl border border-base-300 bg-base-100 p-4 shadow-sm md:grid-cols-2 lg:grid-cols-5">
+    <section className="grid grid-cols-1 gap-4 border border-base-300 bg-base-100 p-4 shadow-sm dark:border-warning/30 dark:bg-warning/20 md:grid-cols-2 lg:grid-cols-5">
       <label className="flex min-w-0 flex-col gap-1 lg:col-span-2">
         <span className="text-sm font-medium text-base-content/75">Suche</span>
         <input
-          className="rounded-lg border border-base-300 bg-base-100 px-3 py-2 text-base-content"
+          className="border border-base-300 bg-base-100 px-3 py-2 text-base-content dark:border-base-content/10 dark:bg-base-300"
           type="search"
           value={filters.search}
           placeholder="Nach Titel oder Gast suchen"
@@ -41,7 +41,7 @@ export default function ItemFilters({ filters, categories, onChange, onReset }: 
       <label className="flex min-w-0 flex-col gap-1">
         <span className="text-sm font-medium text-base-content/75">Kategorie</span>
         <select
-          className="rounded-lg border border-base-300 bg-base-100 px-3 py-2 text-base-content"
+          className="border border-base-300 bg-base-100 px-3 py-2 text-base-content dark:border-base-content/10 dark:bg-base-300"
           value={filters.category}
           onChange={(event: ChangeEvent<HTMLSelectElement>) =>
             updateFilter('category', event.target.value as BookingFilters['category'])
@@ -59,7 +59,7 @@ export default function ItemFilters({ filters, categories, onChange, onReset }: 
       <label className="flex min-w-0 flex-col gap-1">
         <span className="text-sm font-medium text-base-content/75">Status</span>
         <select
-          className="rounded-lg border border-base-300 bg-base-100 px-3 py-2 text-base-content"
+          className="border border-base-300 bg-base-100 px-3 py-2 text-base-content dark:border-base-content/10 dark:bg-base-300"
           value={filters.status}
           onChange={(event: ChangeEvent<HTMLSelectElement>) =>
             updateFilter('status', event.target.value as BookingFilters['status'])
@@ -77,7 +77,7 @@ export default function ItemFilters({ filters, categories, onChange, onReset }: 
       <label className="flex min-w-0 flex-col gap-1">
         <span className="text-sm font-medium text-base-content/75">Sortierung</span>
         <select
-          className="rounded-lg border border-base-300 bg-base-100 px-3 py-2 text-base-content"
+          className="border border-base-300 bg-base-100 px-3 py-2 text-base-content dark:border-base-content/10 dark:bg-base-300"
           value={filters.sort}
           onChange={(event: ChangeEvent<HTMLSelectElement>) =>
             updateFilter('sort', event.target.value as BookingSortOption)
@@ -92,7 +92,7 @@ export default function ItemFilters({ filters, categories, onChange, onReset }: 
       </label>
 
       <button
-        className="w-full rounded-lg bg-base-200 px-4 py-2 text-sm font-semibold text-base-content transition-colors hover:bg-base-300 md:col-span-2 lg:col-span-1"
+        className="w-full bg-base-200 px-4 py-2 text-sm font-semibold text-base-content transition-colors hover:bg-base-300 dark:bg-base-300 dark:hover:bg-base-content/15 md:col-span-2 lg:col-span-1"
         type="button"
         onClick={onReset}
       >

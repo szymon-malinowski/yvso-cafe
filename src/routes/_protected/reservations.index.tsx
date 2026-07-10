@@ -27,8 +27,8 @@ function RouteComponent() {
 
   return (
     <main className="p-4">
-      <div className="flex justify-between items-center mx-auto max-w-6xl p-6">
-        <h1 className="text-xl font-semibold">Reservierungen</h1>
+      <div className="mx-auto flex max-w-6xl flex-col items-stretch gap-3 p-6 sm:flex-row sm:items-center sm:justify-between">
+        <h1 className="break-words text-xl font-semibold">Reservierungen</h1>
         <Link to="/reservations/new" className="btn btn-primary w-full sm:w-fit">
           Neue Reservierung
         </Link>
