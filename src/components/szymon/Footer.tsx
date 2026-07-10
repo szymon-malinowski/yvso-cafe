@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { contactDetails } from "../../config/contactDetails";
 import { openingHoursGroups } from "../../config/openingHours";
 
 const owners = [
@@ -41,6 +42,20 @@ const Footer = () => {
             Kaffeegasse 7
             <br />
             10115 Berlin
+            <span className="mt-4 block">
+              <a
+                href={`tel:${contactDetails.phoneHref}`}
+                className="block w-fit underline decoration-base-content/25 underline-offset-4 transition-colors hover:text-primary"
+              >
+                {contactDetails.phone}
+              </a>
+              <a
+                href={`mailto:${contactDetails.email}`}
+                className="block w-fit underline decoration-base-content/25 underline-offset-4 transition-colors hover:text-primary"
+              >
+                {contactDetails.email}
+              </a>
+            </span>
           </address>
         </section>
 
