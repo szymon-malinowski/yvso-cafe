@@ -2,7 +2,7 @@ import { useForm } from "@tanstack/react-form";
 import type { ReactNode } from "react";
 import {
   getOpeningHoursForDate,
-  reservationIntervalMinutes,
+  getReservationTimeSlots,
 } from "../../config/openingHours";
 import {
   defaultReservationValues,
@@ -151,7 +151,19 @@ export const ReservationForm = ({
                 className="input input-bordered w-full"
                 name={field.name}
                 onBlur={field.handleBlur}
-                onChange={(event) => field.handleChange(event.target.value)}
+                onChange={(event) => {
+                  const bookingDate = event.target.value;
+                  const bookingTime = form.getFieldValue("bookingTime");
+
+                  field.handleChange(bookingDate);
+
+                  if (
+                    bookingTime &&
+                    !getReservationTimeSlots(bookingDate).includes(bookingTime)
+                  ) {
+                    form.setFieldValue("bookingTime", "");
+                  }
+                }}
                 type="date"
                 value={field.state.value}
               />
@@ -162,6 +174,7 @@ export const ReservationForm = ({
         <form.Subscribe selector={(state) => state.values.bookingDate}>
           {(bookingDate) => {
             const openingHours = getOpeningHoursForDate(bookingDate);
+            const timeSlots = getReservationTimeSlots(bookingDate);
 
             return (
               <form.Field name="bookingTime">
@@ -170,19 +183,27 @@ export const ReservationForm = ({
                     error={getVisibleErrorMessage(field.state.meta)}
                     label="Uhrzeit"
                   >
-                    <input
-                      className="input input-bordered w-full"
-                      max={openingHours?.closesAt}
-                      min={openingHours?.opensAt}
+                    <select
+                      className="select select-bordered w-full"
+                      disabled={!openingHours}
                       name={field.name}
                       onBlur={field.handleBlur}
                       onChange={(event) =>
                         field.handleChange(event.target.value)
                       }
-                      step={reservationIntervalMinutes * 60}
-                      type="time"
                       value={field.state.value}
-                    />
+                    >
+                      <option value="">
+                        {openingHours
+                          ? "Uhrzeit auswählen"
+                          : "Zuerst Datum auswählen"}
+                      </option>
+                      {timeSlots.map((time) => (
+                        <option key={time} value={time}>
+                          {time} Uhr
+                        </option>
+                      ))}
+                    </select>
                     {openingHours ? (
                       <span className="text-xs text-base-content/60">
                         Reservierungen am {openingHours.day}: {openingHours.opensAt}

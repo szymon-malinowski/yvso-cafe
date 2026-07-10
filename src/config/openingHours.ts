@@ -71,6 +71,41 @@ export const getOpeningHoursForDate = (isoDate: string) => {
   };
 };
 
+const timeToMinutes = (time: string) => {
+  const [hours, minutes] = time.split(":").map(Number);
+
+  return hours * 60 + minutes;
+};
+
+const minutesToTime = (minutes: number) => {
+  const hours = Math.floor(minutes / 60);
+  const remainingMinutes = minutes % 60;
+
+  return `${String(hours).padStart(2, "0")}:${String(remainingMinutes).padStart(2, "0")}`;
+};
+
+export const getReservationTimeSlots = (isoDate: string) => {
+  const openingHours = getOpeningHoursForDate(isoDate);
+
+  if (!openingHours) {
+    return [];
+  }
+
+  const firstSlot = timeToMinutes(openingHours.opensAt);
+  const lastSlot = timeToMinutes(openingHours.closesAt);
+  const timeSlots: string[] = [];
+
+  for (
+    let slot = firstSlot;
+    slot <= lastSlot;
+    slot += reservationIntervalMinutes
+  ) {
+    timeSlots.push(minutesToTime(slot));
+  }
+
+  return timeSlots;
+};
+
 export const isWithinOpeningHours = (isoDate: string, time: string) => {
   const openingHours = getOpeningHoursForDate(isoDate);
 
