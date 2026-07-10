@@ -13,6 +13,7 @@ import {
   getTotalReservations,
 } from './dashboardHelpers';
 import { statusLabels, type BookingFilters } from './types';
+import { Spinner } from '../ui/Spinner';
 
 const defaultFilters: BookingFilters = {
   search: '',
@@ -39,9 +40,7 @@ export default function Dashboard() {
   const avgGuests = getAverageGuests(bookings);
   const revenue = getExpectedRevenue(bookings);
 
-  if (isLoading) {
-    return <div className="p-6 text-center font-medium text-base-content">Dashboard-Daten werden geladen...</div>;
-  }
+  if (isLoading) return <Spinner label="Lädt Reservierungen..." />;
 
   if (isError) {
     return <div className="p-6 text-center font-medium text-error">Fehler beim Laden der Daten.</div>;
