@@ -1,6 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useBookings } from "../../hooks/useBookings";
+import { Spinner } from "../../components/ui/Spinner";
 
 export const Route = createFileRoute("/_protected/reservations/")({
   component: RouteComponent,
@@ -10,8 +11,7 @@ function RouteComponent() {
   const { useGetAll } = useBookings();
   const { data, isLoading, isError } = useGetAll();
 
-  if (isLoading)
-    return <p className="p-4 text-center">Lädt Reservierungen...</p>;
+  if (isLoading) return <Spinner label="Lädt Reservierungen..." />;
   if (isError)
     return <p className="p-4 text-center">Etwas ist schiefgelaufen.</p>;
   if (!data || data.length === 0) {
@@ -20,7 +20,7 @@ function RouteComponent() {
         <p>Keine Reservierungen gefunden.</p>
         <Link
           to="/reservations/new"
-          className="btn btn-primary mt-2 w-full bg-primary/75 hover:bg-primary/90 sm:w-fit"
+          className="btn btn-primary mt-2 w-full sm:w-fit"
         >
           Erste Reservierung erstellen
         </Link>
@@ -30,11 +30,11 @@ function RouteComponent() {
 
   return (
     <main className="p-4">
-      <div className="flex justify-between items-center mx-auto max-w-6xl p-6">
-        <h1 className="text-xl font-semibold">Reservierungen</h1>
+      <div className="mx-auto flex max-w-6xl flex-col items-stretch gap-3 p-6 sm:flex-row sm:items-center sm:justify-between">
+        <h1 className="break-words text-xl font-semibold">Reservierungen</h1>
         <Link
           to="/reservations/new"
-          className="btn btn-primary w-full bg-primary/75 hover:bg-primary/90 sm:w-fit"
+          className="btn btn-primary w-full sm:w-fit"
         >
           Neue Reservierung
         </Link>
