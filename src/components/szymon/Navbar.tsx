@@ -30,6 +30,10 @@ const Navbar = ({ onNavigate }: NavbarProps) => {
         Über uns
       </Link>
 
+      <Link to="/menu" className={navLinkClass} onClick={onNavigate}>
+        Getränke
+      </Link>
+
       <Link to="/reservations" className={navLinkClass} onClick={onNavigate}>
         Reservierung
       </Link>

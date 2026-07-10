@@ -10,6 +10,8 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as PublicIndexRouteImport } from './routes/_public/index'
+import { Route as PublicMenuRouteImport } from './routes/_public/menu'
+import { Route as PublicImpressumRouteImport } from './routes/_public/impressum'
 import { Route as PublicDashboardRouteImport } from './routes/_public/dashboard'
 import { Route as PublicAboutRouteImport } from './routes/_public/about'
 import { Route as ProtectedReservationsIndexRouteImport } from './routes/_protected/reservations.index'
@@ -20,6 +22,16 @@ import { Route as ProtectedReservationsReservationIdEditRouteImport } from './ro
 const PublicIndexRoute = PublicIndexRouteImport.update({
   id: '/_public/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PublicMenuRoute = PublicMenuRouteImport.update({
+  id: '/_public/menu',
+  path: '/menu',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PublicImpressumRoute = PublicImpressumRouteImport.update({
+  id: '/_public/impressum',
+  path: '/impressum',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PublicDashboardRoute = PublicDashboardRouteImport.update({
@@ -60,6 +72,8 @@ const ProtectedReservationsReservationIdEditRoute =
 export interface FileRoutesByFullPath {
   '/about': typeof PublicAboutRoute
   '/dashboard': typeof PublicDashboardRoute
+  '/impressum': typeof PublicImpressumRoute
+  '/menu': typeof PublicMenuRoute
   '/': typeof PublicIndexRoute
   '/reservations/$reservationId': typeof ProtectedReservationsReservationIdRouteWithChildren
   '/reservations/new': typeof ProtectedReservationsNewRoute
@@ -69,6 +83,8 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/about': typeof PublicAboutRoute
   '/dashboard': typeof PublicDashboardRoute
+  '/impressum': typeof PublicImpressumRoute
+  '/menu': typeof PublicMenuRoute
   '/': typeof PublicIndexRoute
   '/reservations/$reservationId': typeof ProtectedReservationsReservationIdRouteWithChildren
   '/reservations/new': typeof ProtectedReservationsNewRoute
@@ -79,6 +95,8 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_public/about': typeof PublicAboutRoute
   '/_public/dashboard': typeof PublicDashboardRoute
+  '/_public/impressum': typeof PublicImpressumRoute
+  '/_public/menu': typeof PublicMenuRoute
   '/_public/': typeof PublicIndexRoute
   '/_protected/reservations/$reservationId': typeof ProtectedReservationsReservationIdRouteWithChildren
   '/_protected/reservations/new': typeof ProtectedReservationsNewRoute
@@ -90,6 +108,8 @@ export interface FileRouteTypes {
   fullPaths:
     | '/about'
     | '/dashboard'
+    | '/impressum'
+    | '/menu'
     | '/'
     | '/reservations/$reservationId'
     | '/reservations/new'
@@ -99,6 +119,8 @@ export interface FileRouteTypes {
   to:
     | '/about'
     | '/dashboard'
+    | '/impressum'
+    | '/menu'
     | '/'
     | '/reservations/$reservationId'
     | '/reservations/new'
@@ -108,6 +130,8 @@ export interface FileRouteTypes {
     | '__root__'
     | '/_public/about'
     | '/_public/dashboard'
+    | '/_public/impressum'
+    | '/_public/menu'
     | '/_public/'
     | '/_protected/reservations/$reservationId'
     | '/_protected/reservations/new'
@@ -118,6 +142,8 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   PublicAboutRoute: typeof PublicAboutRoute
   PublicDashboardRoute: typeof PublicDashboardRoute
+  PublicImpressumRoute: typeof PublicImpressumRoute
+  PublicMenuRoute: typeof PublicMenuRoute
   PublicIndexRoute: typeof PublicIndexRoute
   ProtectedReservationsReservationIdRoute: typeof ProtectedReservationsReservationIdRouteWithChildren
   ProtectedReservationsNewRoute: typeof ProtectedReservationsNewRoute
@@ -131,6 +157,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof PublicIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_public/menu': {
+      id: '/_public/menu'
+      path: '/menu'
+      fullPath: '/menu'
+      preLoaderRoute: typeof PublicMenuRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_public/impressum': {
+      id: '/_public/impressum'
+      path: '/impressum'
+      fullPath: '/impressum'
+      preLoaderRoute: typeof PublicImpressumRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_public/dashboard': {
@@ -196,6 +236,8 @@ const ProtectedReservationsReservationIdRouteWithChildren =
 const rootRouteChildren: RootRouteChildren = {
   PublicAboutRoute: PublicAboutRoute,
   PublicDashboardRoute: PublicDashboardRoute,
+  PublicImpressumRoute: PublicImpressumRoute,
+  PublicMenuRoute: PublicMenuRoute,
   PublicIndexRoute: PublicIndexRoute,
   ProtectedReservationsReservationIdRoute:
     ProtectedReservationsReservationIdRouteWithChildren,

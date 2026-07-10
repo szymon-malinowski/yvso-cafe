@@ -1,6 +1,10 @@
 import { useForm } from "@tanstack/react-form";
 import type { ReactNode } from "react";
 import {
+  getOpeningHoursForDate,
+  reservationIntervalMinutes,
+} from "../../config/openingHours";
+import {
   defaultReservationValues,
   reservationCategories,
   reservationCategoryLabels,
@@ -155,23 +159,47 @@ export const ReservationForm = ({
           )}
         </form.Field>
 
-        <form.Field name="bookingTime">
-          {(field) => (
-            <FormField
-              error={getVisibleErrorMessage(field.state.meta)}
-              label="Uhrzeit"
-            >
-              <input
-                className="input input-bordered w-full"
-                name={field.name}
-                onBlur={field.handleBlur}
-                onChange={(event) => field.handleChange(event.target.value)}
-                type="time"
-                value={field.state.value}
-              />
-            </FormField>
-          )}
-        </form.Field>
+        <form.Subscribe selector={(state) => state.values.bookingDate}>
+          {(bookingDate) => {
+            const openingHours = getOpeningHoursForDate(bookingDate);
+
+            return (
+              <form.Field name="bookingTime">
+                {(field) => (
+                  <FormField
+                    error={getVisibleErrorMessage(field.state.meta)}
+                    label="Uhrzeit"
+                  >
+                    <input
+                      className="input input-bordered w-full"
+                      max={openingHours?.closesAt}
+                      min={openingHours?.opensAt}
+                      name={field.name}
+                      onBlur={field.handleBlur}
+                      onChange={(event) =>
+                        field.handleChange(event.target.value)
+                      }
+                      step={reservationIntervalMinutes * 60}
+                      type="time"
+                      value={field.state.value}
+                    />
+                    {openingHours ? (
+                      <span className="text-xs text-base-content/60">
+                        Reservierungen am {openingHours.day}: {openingHours.opensAt}
+                        {" – "}
+                        {openingHours.closesAt} Uhr
+                      </span>
+                    ) : (
+                      <span className="text-xs text-base-content/60">
+                        Bitte zuerst ein Datum auswählen.
+                      </span>
+                    )}
+                  </FormField>
+                )}
+              </form.Field>
+            );
+          }}
+        </form.Subscribe>
       </div>
 
       <div className="grid gap-4 md:grid-cols-2">

@@ -1,6 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createRootRoute, Outlet } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
+import Footer from "../components/szymon/Footer";
 import Header from "../components/szymon/Header";
 
 const RootLayout = () => {
@@ -11,6 +12,8 @@ const RootLayout = () => {
       <main className="min-h-[calc(100vh-65px)]">
         <Outlet />
       </main>
+
+      <Footer />
 
       <TanStackRouterDevtools />
     </div>
