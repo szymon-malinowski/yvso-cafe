@@ -66,7 +66,7 @@ function About() {
             </h1>
 
             <p className="mt-7 max-w-lg text-lg leading-8 text-base-content/70">
-              Das Y.V.S.O Café ist ein Treffpunkt für entspannte Morgen,
+              Das Y.V.S.O. Café ist ein Treffpunkt für entspannte Morgen,
               lebhafte Gespräche und alles dazwischen. Guter Kaffee hat uns
               zusammengebracht, echte Gastfreundschaft lässt uns bleiben.
             </p>
@@ -94,7 +94,7 @@ function About() {
             <figure className="relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-base-300 shadow-2xl sm:aspect-[5/4] lg:aspect-[4/5]">
               <img
                 src="/hero.png"
-                alt="Der gemütlich beleuchtete Innenraum des Y.V.S.O Cafés"
+                alt="Der gemütlich beleuchtete Innenraum des Y.V.S.O. Cafés"
                 className="h-full w-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
@@ -107,7 +107,7 @@ function About() {
 
             <div className="absolute -bottom-7 -left-4 max-w-[15rem] rounded-2xl border border-base-300 bg-base-100 p-5 shadow-xl sm:-left-8 sm:max-w-[17rem]">
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
-                Typisch Y.V.S.O
+                Typisch Y.V.S.O.
               </p>
               <p className="mt-2 font-serif text-xl leading-snug text-base-content">
                 Für entspannte Morgen und Gespräche ohne Eile.
@@ -134,7 +134,7 @@ function About() {
 
             <div className="max-w-2xl space-y-5 text-lg leading-8 text-base-content/70">
               <p>
-                Wir haben uns das Y.V.S.O als den Ort vorgestellt, den wir uns
+                Wir haben uns das Y.V.S.O. als den Ort vorgestellt, den wir uns
                 selbst in unserer Nachbarschaft immer gewünscht haben: vertraut
                 genug, um sich wie zu Hause anzufühlen, und besonders genug, um
                 aus einem gewöhnlichen Tag etwas Schönes zu machen.

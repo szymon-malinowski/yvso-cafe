@@ -52,8 +52,8 @@ export default function Dashboard() {
       <div className="mx-auto max-w-6xl space-y-6 p-4 sm:p-6">
         <header className="rounded-xl border border-base-300 bg-base-100 p-5 shadow-sm">
           <div className="min-w-0">
-            <p className="text-sm font-medium text-primary">Y.V.S.O Café</p>
-            <h1 className="text-2xl font-bold text-base-content sm:text-3xl">YVSO Café Dashboard</h1>
+            <p className="text-sm font-medium text-primary">Y.V.S.O. Café</p>
+            <h1 className="text-2xl font-bold text-base-content sm:text-3xl">Y.V.S.O. Café Dashboard</h1>
           </div>
         </header>
 

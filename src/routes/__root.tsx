@@ -25,7 +25,7 @@ const RootLayout = () => {
               className="text-base font-bold text-base-content"
               onClick={closeMenu}
             >
-              YVSO Café
+              Y.V.S.O. Café
             </Link>
 
             <button
