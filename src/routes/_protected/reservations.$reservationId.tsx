@@ -13,6 +13,7 @@ import {
   type ReservationCategory,
   type ReservationStatus,
 } from "../../schemas/reservationSchema";
+import { Spinner } from "../../components/ui/Spinner";
 
 export const Route = createFileRoute("/_protected/reservations/$reservationId")(
   {
@@ -31,7 +32,7 @@ function RouteComponent() {
   const { data: booking, isLoading, isError } = useGetOne(reservationId);
   const deleteBooking = useDelete();
 
-  if (isLoading) return <p className="p-4 text-center">Lädt Reservierung...</p>;
+  if (isLoading) return <Spinner label="Lädt Reservierung..." />;
   if (isError || !booking)
     return (
       <div className="p-4 text-center">

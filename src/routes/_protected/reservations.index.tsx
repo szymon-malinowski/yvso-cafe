@@ -1,6 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useBookings } from "../../hooks/useBookings";
+import { Spinner } from "../../components/ui/Spinner";
 
 export const Route = createFileRoute("/_protected/reservations/")({
   component: RouteComponent,
@@ -10,15 +11,17 @@ function RouteComponent() {
   const { useGetAll } = useBookings();
   const { data, isLoading, isError } = useGetAll();
 
-  if (isLoading)
-    return <p className="p-4 text-center">Lädt Reservierungen...</p>;
+  if (isLoading) return <Spinner label="Lädt Reservierungen..." />;
   if (isError)
     return <p className="p-4 text-center">Etwas ist schiefgelaufen.</p>;
   if (!data || data.length === 0) {
     return (
       <div className="p-4 text-center flex gap-6 flex-col items-center">
         <p>Keine Reservierungen gefunden.</p>
-        <Link to="/reservations/new" className="btn btn-primary mt-2 w-full sm:w-fit">
+        <Link
+          to="/reservations/new"
+          className="btn btn-primary mt-2 w-full sm:w-fit"
+        >
           Erste Reservierung erstellen
         </Link>
       </div>
@@ -29,7 +32,10 @@ function RouteComponent() {
     <main className="p-4">
       <div className="mx-auto flex max-w-6xl flex-col items-stretch gap-3 p-6 sm:flex-row sm:items-center sm:justify-between">
         <h1 className="break-words text-xl font-semibold">Reservierungen</h1>
-        <Link to="/reservations/new" className="btn btn-primary w-full sm:w-fit">
+        <Link
+          to="/reservations/new"
+          className="btn btn-primary w-full sm:w-fit"
+        >
           Neue Reservierung
         </Link>
       </div>

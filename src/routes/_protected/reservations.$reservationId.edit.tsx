@@ -3,7 +3,7 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { ReservationForm } from "../../components/reservations/ReservationForm";
 import { useBookings } from "../../hooks/useBookings";
 import type { ReservationFormValues } from "../../schemas/reservationSchema";
-
+import { Spinner } from "../../components/ui/Spinner";
 export const Route = createFileRoute(
   "/_protected/reservations/$reservationId/edit",
 )({
@@ -18,7 +18,7 @@ function RouteComponent() {
   const { data: booking, isLoading, isError } = useGetOne(reservationId);
   const updateBooking = useUpdate(reservationId);
 
-  if (isLoading) return <p className="p-4">Lädt Reservierung...</p>;
+  if (isLoading) return <Spinner label="Lädt Reservierungen..." />;
   if (isError || !booking)
     return <p className="p-4">Reservierung nicht gefunden.</p>;
 
