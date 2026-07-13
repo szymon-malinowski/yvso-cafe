@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { useTheme } from "../olha/AppContext";
+import { useTheme } from "../../context/AppContext";
 
 const navLinkClass =
   "rounded-lg border border-transparent px-3 py-2 text-sm font-semibold text-base-content transition-colors hover:border-base-content/15 hover:bg-base-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-base-100 [&.active]:border-primary/70 [&.active]:bg-primary/70 [&.active]:text-primary-content [&.active]:shadow-sm";
